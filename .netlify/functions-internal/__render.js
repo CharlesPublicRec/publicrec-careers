@@ -27,7 +27,7 @@ __export(exports, {
   handler: () => handler
 });
 
-// node_modules/.pnpm/@sveltejs+kit@1.0.0-next.162_svelte@3.42.2/node_modules/@sveltejs/kit/dist/install-fetch.js
+// node_modules/.pnpm/@sveltejs+kit@1.0.0-next.162_svelte@3.42.4/node_modules/@sveltejs/kit/dist/install-fetch.js
 var import_http = __toModule(require("http"));
 var import_https = __toModule(require("https"));
 var import_zlib = __toModule(require("zlib"));
@@ -2413,9 +2413,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-6616b94b.js",
+      file: assets + "/_app/start-83321ead.js",
       css: [assets + "/_app/assets/start-d5b4de3e.css"],
-      js: [assets + "/_app/start-6616b94b.js", assets + "/_app/chunks/vendor-59d35d42.js"]
+      js: [assets + "/_app/start-83321ead.js", assets + "/_app/chunks/vendor-9b73cd50.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2504,7 +2504,7 @@ var module_lookup = {
     return designLead;
   })
 };
-var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-6ca640be.js", "css": ["assets/pages/__layout.svelte-17074957.css"], "js": ["pages/__layout.svelte-6ca640be.js", "chunks/vendor-59d35d42.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-564f97e3.js", "css": [], "js": ["error.svelte-564f97e3.js", "chunks/vendor-59d35d42.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-6d88028a.js", "css": [], "js": ["pages/index.svelte-6d88028a.js", "chunks/vendor-59d35d42.js"], "styles": [] }, "src/routes/job/influencer-manager.svelte": { "entry": "pages/job/influencer-manager.svelte-a28cf980.js", "css": [], "js": ["pages/job/influencer-manager.svelte-a28cf980.js", "chunks/vendor-59d35d42.js"], "styles": [] }, "src/routes/job/full-stack-dev.svelte": { "entry": "pages/job/full-stack-dev.svelte-3383789c.js", "css": [], "js": ["pages/job/full-stack-dev.svelte-3383789c.js", "chunks/vendor-59d35d42.js"], "styles": [] }, "src/routes/job/design-lead.svelte": { "entry": "pages/job/design-lead.svelte-346c68b2.js", "css": [], "js": ["pages/job/design-lead.svelte-346c68b2.js", "chunks/vendor-59d35d42.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-756ba7a3.js", "css": ["assets/pages/__layout.svelte-cfa8ac43.css"], "js": ["pages/__layout.svelte-756ba7a3.js", "chunks/vendor-9b73cd50.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-08332c70.js", "css": [], "js": ["error.svelte-08332c70.js", "chunks/vendor-9b73cd50.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-632e4009.js", "css": [], "js": ["pages/index.svelte-632e4009.js", "chunks/vendor-9b73cd50.js"], "styles": [] }, "src/routes/job/influencer-manager.svelte": { "entry": "pages/job/influencer-manager.svelte-be6167e4.js", "css": [], "js": ["pages/job/influencer-manager.svelte-be6167e4.js", "chunks/vendor-9b73cd50.js"], "styles": [] }, "src/routes/job/full-stack-dev.svelte": { "entry": "pages/job/full-stack-dev.svelte-b3f754a6.js", "css": [], "js": ["pages/job/full-stack-dev.svelte-b3f754a6.js", "chunks/vendor-9b73cd50.js"], "styles": [] }, "src/routes/job/design-lead.svelte": { "entry": "pages/job/design-lead.svelte-04c0e11d.js", "css": [], "js": ["pages/job/design-lead.svelte-04c0e11d.js", "chunks/vendor-9b73cd50.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2539,10 +2539,10 @@ var Overview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 				<li>Competitive parental leave policy</li>
 				<li>Generous employee discount</li>
 				<li>Flexible Work From Home model</li></ul></div>
-		<div><img class="${"mt-10 sm:mt-2 w-auto"}" src="${"/static/office.jpg"}" alt="${"Public Rec office"}"></div></div></div>`;
+		<div><img class="${"mt-10 sm:mt-2 w-auto"}" src="${"/office.jpg"}" alt="${"Public Rec office"}"></div></div></div>`;
 });
 var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<nav><div class="${"pt-10 pb-8 px-6 bg-black text-white"}"><a href="${"/"}"><img class="${"w-28"}" src="${"/static/logo.png"}" alt="${"Public Rec logo"}"></a></div></nav>
+  return `<nav><div class="${"pt-10 pb-8 px-6 bg-black text-white"}"><a href="${"/"}"><img class="${"w-28"}" src="${"/logo.png"}" alt="${"Public Rec logo"}"></a></div></nav>
 
 <body class="${"container mx-auto px-6 bg-black"}">${slots.default ? slots.default({}) : ``}
 	${validate_component(Overview, "Overview").$$render($$result, {}, {}, {})}</body>

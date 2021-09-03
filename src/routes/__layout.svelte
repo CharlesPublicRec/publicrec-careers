@@ -6,7 +6,7 @@
 <nav>
 	<div class="pt-10 pb-8 px-6 bg-black text-white">
 		<a href="/">
-			<img class="w-28" src="/static/logo.png" alt="Public Rec logo" />
+			<img class="w-28" src="/logo.png" alt="Public Rec logo" />
 		</a>
 	</div>
 </nav>

@@ -25,7 +25,7 @@
 
 		</div>
 		<div>
-			<img class="mt-10 sm:mt-2 w-auto" src="/static/office.jpg" alt="Public Rec office" />
+			<img class="mt-10 sm:mt-2 w-auto" src="/office.jpg" alt="Public Rec office" />
 		</div>
 	</div>
 

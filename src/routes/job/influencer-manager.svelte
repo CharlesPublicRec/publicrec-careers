@@ -1,8 +1,8 @@
 <div class="text-white">
-	<h1 class="text-4xl mt-12 mb-5">Influencer Manager</h1>
+	<h1 class="text-3xl sm:text-4xl mt-12 mb-5">Influencer Manager</h1>
 	<div class="container flex flex-grow justify-between">
 		<div class="mt-12 sm:w-7/12">
-			<p class="text-xl">Overview</p>
+			<p class="text-lg sm:text-xl">Overview</p>
 			<p class="mt-3">
 				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
 				full-stack web developer to help bring web development in-house as we transition from our

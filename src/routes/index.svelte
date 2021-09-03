@@ -19,12 +19,12 @@
 		<div class="flex">
 			<div class="flex-grow">
 				<a href="/job/full-stack-dev">
-					<p class="text-2xl">Full-Stack Developer</p>
+					<p class="text-white hover:text-opacity-80 text-2xl">Full-Stack Developer</p>
 				</a>
 				<p class="text-xs mt-2 font-semibold uppercase">Chicago / Los Angeles / Remote</p>
 			</div>
 			<div class="flex">
-				<a class="text-xl self-center" href="/job/full-stack-dev">
+				<a class="text-white hover:text-opacity-80 text-xl self-center" href="/job/full-stack-dev">
 					<p>&#8594;</p>
 				</a>
 			</div>
@@ -33,12 +33,12 @@
 		<div class="flex">
 			<div class="flex-grow">
 				<a href="/job/design-lead">
-					<p class="text-2xl">Design Lead</p>
+					<p class="text-white hover:text-opacity-80 text-2xl">Design Lead</p>
 				</a>
 				<p class="text-xs mt-2 font-semibold uppercase">Chicago / Los Angeles / Remote</p>
 			</div>
 			<div class="flex">
-				<a class="text-xl self-center" href="/job/design-lead">
+				<a class="text-white hover:text-opacity-80 text-xl self-center" href="/job/design-lead">
 					<p>&#8594;</p>
 				</a>
 			</div>
@@ -49,12 +49,14 @@
 		<div class="flex">
 			<div class="flex-grow">
 				<a href="/job/influencer-manager">
-					<p class="text-2xl">Influencer Manager</p>
+					<p class="text-white hover:text-opacity-80 text-2xl">Influencer Manager</p>
 				</a>
 				<p class="text-xs mt-2 font-semibold uppercase">Chicago</p>
 			</div>
 			<div class="flex">
-				<a class="text-xl self-center" href="/job/influencer-manager">
+				<a
+					class="text-white hover:text-opacity-80 text-xl self-center"
+					href="/job/influencer-manager">
 					<p>&#8594;</p>
 				</a>
 			</div>

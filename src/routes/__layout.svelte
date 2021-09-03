@@ -22,7 +22,9 @@
 		<div class="pb-4 my-10 flex flex-row justify-between align-middle items-center mx-auto">
 			<p class="text-2xl font-light">careers@publicrec.com</p>
 			<a href="https://www.instagram.com/publicrec/?hl=en">
-				<p class="text-sm font-light uppercase text-right">Instagram</p>
+				<p class="text-white hover:text-opacity-80 text-sm font-light uppercase text-right">
+					Instagram
+				</p>
 			</a>
 		</div>
 	</div>

@@ -1,17 +1,46 @@
 <div class="text-white">
 	<h1 class="text-4xl mt-12 mb-5">Design Lead</h1>
-	<p class="text-xl mt-12">Overview</p>
-	<p class="mt-3">
-		As our Full Stack Developer, you will collaborate with our eCommerce manager, Head of Marketing,
-		Customer Experience, and the Creative team to evolve and refine our eCommerce web experience.
-		<br />
-		<br />
-		This is a senior role for an experienced developer looking for and excited to work with React,
-		Gatsby, and Contentful on our Headless Shopify Website. Our ideal candidate will welcome the
-		chance to lead and grow our in-house Engineering team from the ground up.
-		<br />
-		<br />
-		We provide endless opportunity and zero red tape. Scrappy and proud. This is a U.S. remote role,
-		with an option to work from our HQ in Chicago.
-	</p>
+	<div class="container flex flex-grow justify-between">
+		<div class="mt-12 sm:w-7/12">
+			<p class="text-xl">Overview</p>
+			<p class="mt-3">
+				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
+				full-stack web developer to help bring web development in-house as we transition from our
+				third-party agency.
+				<br />
+				<br />
+				As our first in-house development hire, you will work cross-functionally with a group which
+				includes our eCommerce manager, designers, and CRO team. This group’s overall purpose is to
+				create a seamless user experience while maintaining an optimal conversion rate.
+				<br />
+				<br />
+				Daily responsibilities will include building, implementing, and testing new designs and
+				functionality across our website. Our ideal candidate will thrive in a collaborative
+				environment with a high attention to detail.
+				<br />
+				<br />
+				Public Rec’s website is built on a modern web stack including the following languages,
+				frameworks, and tools:
+				<br />
+				<br />
+				React - Gatsby - Contentful - Headless Shopify - Netlify – Optimizely
+				<br />
+				<br />
+				This is a remote role based in the U.S. Our office is located in Chicago if there is
+				interest in visiting or working from there.
+				<br />
+				<br />
+				We are committed to building a diverse and inclusive environment at Public Rec. Please
+				submit resumes to careers@publicrec.com.
+			</p>
+		</div>
+		<div class="hidden lg:block mt-12 sm:w-72">
+			<div class="bg-gray-300">
+				<p class="text-black p-6">
+					To apply for this role, please email your resume, cover letter, and link to online
+					portfolio to careers@publicrec.com
+				</p>
+			</div>
+		</div>
+	</div>
 </div>

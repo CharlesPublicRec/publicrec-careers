@@ -3,10 +3,16 @@
 	import Overview from '../Overview.svelte';
 </script>
 
+<style global lang="postcss">
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>
+
 <nav>
-	<div class="pt-10 pb-8 px-4 sm:px-6 bg-black text-white">
+	<div class="pt-20 pb-8 px-4 sm:px-6 bg-black text-white">
 		<a href="/">
-			<img class="w-28" src="/logo.png" alt="Public Rec logo" />
+			<img class="w-32" src="/logo.png" alt="Public Rec logo" />
 		</a>
 	</div>
 </nav>

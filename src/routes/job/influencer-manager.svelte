@@ -1,5 +1,5 @@
 <div class="text-white">
-	<h1 class="text-3xl sm:text-4xl mt-20 mb-5">Influencer Manager</h1>
+	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5">Influencer Manager</h1>
 	<div class="container flex flex-grow justify-between">
 		<div class="mt-12 sm:w-7/12">
 			<p class="text-lg sm:text-xl">Overview</p>

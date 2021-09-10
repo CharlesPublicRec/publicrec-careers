@@ -1,5 +1,5 @@
 <div class="bg-black text-white mx-auto">
-	<h1 class="text-3xl sm:text-4xl mt-20 mb-7">Work With Us</h1>
+	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-7">Work With Us</h1>
 	<div class="sm:w-7/12">
 		<p class="text-md sm:text-lg tracking-wide font-light leading-8">
 			Public Rec is a digitally-native apparel brand on a mission to make comfort look good. We’re a
@@ -12,7 +12,7 @@
 		</p>
 	</div>
 
-	<div class="mt-32">
+	<div class="mt-20 sm:mt-32">
 		<p class="uppercase font-semibold text-xs mb-9">Open Jobs</p>
 		<h3 class="font-semibold text-2xl sm:text-3xl">Creative</h3>
 		<hr class="mt-4 mb-6" />

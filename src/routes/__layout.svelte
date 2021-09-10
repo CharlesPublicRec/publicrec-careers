@@ -7,10 +7,14 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
+	@font-face {
+		font-family: 'MessinaSans';
+		src: url('static/fonts/MessinaSans-Regular.woff') format('woff');
+	}
 </style>
 
 <nav>
-	<div class="pt-20 pb-8 px-4 sm:px-6 bg-black text-white">
+	<div class="pt-14 sm:pt-20 pb-8 px-4 sm:px-6 bg-black text-white">
 		<a href="/">
 			<img class="w-32" src="/logo.png" alt="Public Rec logo" />
 		</a>

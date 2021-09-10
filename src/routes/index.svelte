@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Public Rec Careers</title>
+</svelte:head>
+
 <div class="bg-black text-white mx-auto">
 	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-7">Work With Us</h1>
 	<div class="sm:w-7/12">

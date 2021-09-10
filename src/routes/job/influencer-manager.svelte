@@ -1,3 +1,6 @@
+<svelte:head>
+	<title>Public Rec Careers | Influencer Manager</title>
+</svelte:head>
 <div class="text-white">
 	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5">Influencer Manager</h1>
 	<div class="container flex flex-grow justify-between">

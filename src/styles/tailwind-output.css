@@ -789,14 +789,16 @@ video {
 	transition-duration: 150ms;
 }
 
-* {
+@font-face {
 	font-family: 'MessinaSans';
+	src: url('/fonts/MessinaSans-Regular.woff') format('woff');
 }
-
+* {
+	font-family: 'MessinaSans', Sans-Serif;
+}
 .hover\:text-opacity-80:hover {
 	--tw-text-opacity: 0.8;
 }
-
 @media (min-width: 640px) {
 
 	.sm\:mt-32 {
@@ -874,7 +876,6 @@ video {
 		line-height: 1.75rem;
 	}
 }
-
 @media (min-width: 1024px) {
 
 	.lg\:block {

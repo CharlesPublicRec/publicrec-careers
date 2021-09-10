@@ -7,10 +7,6 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
-	@font-face {
-		font-family: 'MessinaSans';
-		src: url('static/fonts/MessinaSans-Regular.woff') format('woff');
-	}
 </style>
 
 <nav>

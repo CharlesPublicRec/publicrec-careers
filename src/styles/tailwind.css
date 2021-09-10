@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: 'MessinaSans';
+	font-family: 'Messina Sans';
 	src: url('/fonts/MessinaSans-Regular.woff') format('woff');
 }
 * {
-	font-family: 'MessinaSans', Sans-Serif;
+	font-family: 'Messina Sans', sans-serif;
 }

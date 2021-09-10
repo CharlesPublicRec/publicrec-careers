@@ -790,11 +790,11 @@ video {
 }
 
 @font-face {
-	font-family: 'MessinaSans';
+	font-family: 'Messina Sans';
 	src: url('/fonts/MessinaSans-Regular.woff') format('woff');
 }
 * {
-	font-family: 'MessinaSans', Sans-Serif;
+	font-family: 'Messina Sans', sans-serif;
 }
 .hover\:text-opacity-80:hover {
 	--tw-text-opacity: 0.8;

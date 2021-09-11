@@ -833,6 +833,10 @@ video {
 		width: 18rem;
 	}
 
+	.sm\:max-w-\[553px\] {
+		max-width: 553px;
+	}
+
 	.sm\:flex-row {
 		flex-direction: row;
 	}
@@ -874,6 +878,16 @@ video {
 	.sm\:text-xl {
 		font-size: 1.25rem;
 		line-height: 1.75rem;
+	}
+
+	.sm\:leading-9 {
+		line-height: 2.25rem;
+	}
+}
+@media (min-width: 768px) {
+
+	.md\:max-w-\[696px\] {
+		max-width: 696px;
 	}
 }
 @media (min-width: 1024px) {

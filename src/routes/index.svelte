@@ -4,8 +4,8 @@
 
 <div class="bg-black text-white mx-auto">
 	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-7">Work With Us</h1>
-	<div class="sm:w-7/12">
-		<p class="text-md sm:text-lg tracking-wide font-light leading-8">
+	<div class="md:max-w-[696px]">
+		<p class="text-md sm:text-lg tracking-wide font-light leading-8 sm:leading-9">
 			Public Rec is a digitally-native apparel brand on a mission to make comfort look good. We’re a
 			small, rapidly growing team, and we’re always on the lookout for good people who want to do
 			great things.

@@ -1,8 +1,8 @@
 <svelte:head>
 	<title>Public Rec Careers | Full Stack Developer</title>
 </svelte:head>
-<div class="text-white">
-	<h1 class="text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5">Full Stack Developer</h1>
+<div class="text-black">
+	<h1 class="text-[24px] sm:text-[48px] mb-5">Full Stack Developer</h1>
 	<div class="container flex flex-grow justify-between">
 		<div class="mt-12 sm:w-7/12">
 			<p class="text-lg sm:text-xl">Overview</p>
@@ -37,8 +37,8 @@
 				submit resumes to careers@publicrec.com.
 			</p>
 		</div>
-		<div class="hidden lg:block mt-12 sm:w-72">
-			<div class="bg-gray-300">
+		<div class="hidden lg:block sm:w-72">
+			<div class="bg-gray-300 border">
 				<p class="text-black p-6">
 					To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com

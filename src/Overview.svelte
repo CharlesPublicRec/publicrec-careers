@@ -1,5 +1,5 @@
-<div class="text-white mb-14">
-	<h3 class="font-semibold mt-20 sm:mt-32 text-2xl sm:text-3xl">Working at Public Rec</h3>
+<div class="text-black mb-14">
+	<h3 class="font-semibold mt-20 sm:mt-32 text-[30px] sm:text-[48px]">Working at Public Rec</h3>
 	<div class="max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32">
 		<div class="mw-">
 			<p class="uppercase font-semibold text-xs mt-5 mb-4">Who We Are</p>

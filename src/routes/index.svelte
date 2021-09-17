@@ -19,7 +19,7 @@
 <nav>
 	<div class="pt-14 sm:pt-20 pb-8 bg-black text-white">
 		<a href="/">
-			<img class="w-32" src="/logo.png" alt="Public Rec logo" />
+			<img class="w-[110px] sm:w-[130px]" src="/logo.png" alt="Public Rec logo" />
 		</a>
 	</div>
 </nav>
@@ -102,10 +102,10 @@
 		</div>
 
 	</div>
-	<div class="text-white mb-14">
+	<div class="text-white mb-8">
 		<h3 class="font-semibold mt-20 sm:mt-32 text-[30px] sm:text-[48px]">Working at Public Rec</h3>
 		<div class="max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32">
-			<div class="mw-">
+			<div>
 				<p class="uppercase font-semibold text-[15px] tracking-widest mt-5 mb-4">Who We Are</p>
 				<p class="sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9">
 					Our culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,

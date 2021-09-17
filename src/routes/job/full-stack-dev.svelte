@@ -5,8 +5,8 @@
 	<h1 class="text-[24px] sm:text-[48px] mb-5">Full Stack Developer</h1>
 	<div class="container flex flex-grow justify-between">
 		<div class="mt-12 sm:w-7/12">
-			<p class="text-lg sm:text-xl">Overview</p>
-			<p class="mt-3">
+			<p class="text-[20px] sm:text-[28px]">Overview</p>
+			<p class="text-[16px] sm:text-[20px] mt-3">
 				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
 				full-stack web developer to help bring web development in-house as we transition from our
 				third-party agency.
@@ -39,7 +39,7 @@
 		</div>
 		<div class="hidden lg:block sm:w-72">
 			<div class="bg-gray-300 border">
-				<p class="text-black p-6">
+				<p class="text-black p-7">
 					To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com
 				</p>

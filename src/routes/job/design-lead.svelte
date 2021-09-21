@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div class="sm:hidden">
-		<h1 class="text-[24px] sm:text-[48px] mb-5">Full Stack Developer</h1>
+		<h1 class="text-[24px] sm:text-[48px] mb-5">Design Lead</h1>
 		<p class="text-[16px] sm:text-[20px] mt-3 mb-6">
 			To apply for this role, please email your resume, cover letter, and link to online portfolio
 			to careers@publicrec.com

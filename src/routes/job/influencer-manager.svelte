@@ -55,7 +55,7 @@
 		</div>
 		<div class="hidden lg:block sm:w-[332px]">
 			<div class="bg-gray-300 border">
-				<p class="text-black p-7">
+				<p class="text-black text-[18px] p-7">
 					To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com
 				</p>

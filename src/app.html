@@ -6,5 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
 	</head>
-	%svelte.body%
+	<style>
+		div#svelte {
+			height: 100vh;
+		}
+	</style>
+	<div id="svelte">%svelte.body%</div>
 </html>

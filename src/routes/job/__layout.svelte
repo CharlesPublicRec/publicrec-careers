@@ -13,44 +13,51 @@
 	@tailwind utilities;
 </style>
 
-<nav class="bg-white">
-	<div class="pt-14 sm:pt-20 pb-8 bg-white text-black">
-		<a href="/">
-			<img class="w-[110px] sm:w-[130px]" src="/logo-black.png" alt="Public Rec logo" />
-		</a>
-	</div>
-</nav>
-
-<body class="container mx-auto px-4 sm:px-6 ">
-	<div class="mt-12 sm:mt-20 mb-3 sm:mb-4">
-		<a class="text-black uppercase text-[11px] hover:text-opacity-70 " href="/">
-			&#8592 Back to Open Jobs
-		</a>
-	</div>
-
-	<slot />
-	<Overview />
-</body>
-
-<footer class="bg-white text-black">
-	<div class="container mt-6 mx-auto">
-		<hr />
-		<div
-			class="pb-4 my-12 sm:mt-[88px] flex flex-row justify-between align-middle items-center mx-auto">
-			<p class="text-[24px] sm:text-[40px] font-light">careers@publicrec.com</p>
-			<div class="flex flex-col">
-				<a href="https://www.instagram.com/publicrec/?hl=en">
-					<p class="text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right">
-						Instagram
-					</p>
-				</a>
-				<a href="https://www.youtube.com/c/publicrec">
-					<p class="text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right">
-						Youtube
-					</p>
-				</a>
-			</div>
-
+<div class="h-fill bg-white mx-auto">
+	<nav>
+		<div class="container mx-auto pt-14 sm:pt-20 px-7 sm:px-0 pb-8 bg-white text-black">
+			<a href="/">
+				<img class="w-[110px] sm:w-[130px]" src="/logo-black.png" alt="Public Rec logo" />
+			</a>
 		</div>
+	</nav>
+
+	<div class="container px-7 sm:px-0 mx-auto">
+		<div class="mt-10 sm:mt-20 mb-3 sm:mb-4">
+			<a class="text-black uppercase text-[11px] hover:text-opacity-70 " href="/">
+				&#8592 Back to Open Jobs
+			</a>
+		</div>
+		<div class="text-black">
+			<slot />
+		</div>
+		<Overview />
 	</div>
-</footer>
+
+	<footer class="bg-white text-black mb-2 sm:mb-12">
+		<div class="container px-7 sm:px-0 mt-6 mx-auto">
+			<hr />
+			<div
+				class="pb-4 sm:pb-[88px] mt-4 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between
+				align-middle sm:items-center mx-auto">
+				<p class="text-[20px] sm:text-[40px] font-light">careers@publicrec.com</p>
+				<div class="flex flex-col">
+					<a class="mt-3 sm:mt-0" href="https://www.instagram.com/publicrec/?hl=en">
+						<p
+							class="text-black hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right">
+							Instagram
+						</p>
+					</a>
+					<a href="https://www.youtube.com/c/publicrec">
+						<p
+							class="text-black hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right">
+							Youtube
+						</p>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+</div>

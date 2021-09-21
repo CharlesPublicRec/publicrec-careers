@@ -1048,6 +1048,9 @@ function get_single_valued_header(headers, key) {
   }
   return value;
 }
+function coalesce_to_error(err) {
+  return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
+}
 function lowercase_keys(obj) {
   const clone2 = {};
   for (const key in obj) {
@@ -1529,7 +1532,7 @@ function try_serialize(data, fail) {
     return devalue(data);
   } catch (err) {
     if (fail)
-      fail(err);
+      fail(coalesce_to_error(err));
     return null;
   }
 }
@@ -1604,6 +1607,7 @@ async function load_node({
   const { module: module2 } = node;
   let uses_credentials = false;
   const fetched = [];
+  let set_cookie_headers = [];
   let loaded;
   const page_proxy = new Proxy(page, {
     get: (target, prop, receiver) => {
@@ -1709,8 +1713,11 @@ async function load_node({
                 const body = await response2.text();
                 const headers = {};
                 for (const [key2, value] of response2.headers) {
-                  if (key2 !== "etag" && key2 !== "set-cookie")
+                  if (key2 === "set-cookie") {
+                    set_cookie_headers = set_cookie_headers.concat(value);
+                  } else if (key2 !== "etag") {
                     headers[key2] = value;
+                  }
                 }
                 if (!opts.body || typeof opts.body === "string") {
                   fetched.push({
@@ -1758,6 +1765,7 @@ async function load_node({
     loaded: normalize(loaded),
     context: loaded.context || context,
     fetched,
+    set_cookie_headers,
     uses_credentials
   };
 }
@@ -1819,9 +1827,6 @@ function resolve(base2, path) {
   }
   const prefix = path_match && path_match[0] || base_match && base_match[0] || "";
   return `${prefix}${baseparts.join("/")}`;
-}
-function coalesce_to_error(err) {
-  return err instanceof Error ? err : new Error(JSON.stringify(err));
 }
 async function respond_with_error({ request, options: options2, state, $session, status, error: error2 }) {
   const default_layout = await options2.load_component(options2.manifest.layout);
@@ -1919,6 +1924,7 @@ async function respond$1(opts) {
   let branch = [];
   let status = 200;
   let error2;
+  let set_cookie_headers = [];
   ssr:
     if (page_config.ssr) {
       let context = {};
@@ -1937,13 +1943,14 @@ async function respond$1(opts) {
             });
             if (!loaded)
               return;
+            set_cookie_headers = set_cookie_headers.concat(loaded.set_cookie_headers);
             if (loaded.loaded.redirect) {
-              return {
+              return with_cookies({
                 status: loaded.loaded.status,
                 headers: {
                   location: encodeURI(loaded.loaded.redirect)
                 }
-              };
+              }, set_cookie_headers);
             }
             if (loaded.loaded.error) {
               ({ status, error: error2 } = loaded.loaded);
@@ -1990,14 +1997,14 @@ async function respond$1(opts) {
                 }
               }
             }
-            return await respond_with_error({
+            return with_cookies(await respond_with_error({
               request,
               options: options2,
               state,
               $session,
               status,
               error: error2
-            });
+            }), set_cookie_headers);
           }
         }
         if (loaded && loaded.loaded.context) {
@@ -2009,21 +2016,21 @@ async function respond$1(opts) {
       }
     }
   try {
-    return await render_response({
+    return with_cookies(await render_response({
       ...opts,
       page_config,
       status,
       error: error2,
       branch: branch.filter(Boolean)
-    });
+    }), set_cookie_headers);
   } catch (err) {
     const error3 = coalesce_to_error(err);
     options2.handle_error(error3, request);
-    return await respond_with_error({
+    return with_cookies(await respond_with_error({
       ...opts,
       status: 500,
       error: error3
-    });
+    }), set_cookie_headers);
   }
 }
 function get_page_config(leaf, options2) {
@@ -2032,6 +2039,12 @@ function get_page_config(leaf, options2) {
     router: "router" in leaf ? !!leaf.router : options2.router,
     hydrate: "hydrate" in leaf ? !!leaf.hydrate : options2.hydrate
   };
+}
+function with_cookies(response, set_cookie_headers) {
+  if (set_cookie_headers.length) {
+    response.headers["set-cookie"] = set_cookie_headers;
+  }
+  return response;
 }
 async function render_page(request, route, match, options2, state) {
   if (state.initiator === route) {
@@ -2353,6 +2366,11 @@ function create_ssr_component(fn) {
     $$render
   };
 }
+function add_attribute(name, value, boolean) {
+  if (value == null || boolean && !value)
+    return "";
+  return ` ${name}${value === true ? "" : `=${typeof value === "string" ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
+}
 function afterUpdate() {
 }
 var css$2 = {
@@ -2412,7 +2430,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module"
 });
-var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
+var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + "\n	</head>\n	" + body + "\n</html>\n";
 var options = null;
 var default_settings = { paths: { "base": "", "assets": "" } };
 function init(settings = default_settings) {
@@ -2423,9 +2441,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-9cd4b7d5.js",
+      file: assets + "/_app/start-bcbc51d4.js",
       css: [assets + "/_app/assets/start-d5b4de3e.css"],
-      js: [assets + "/_app/start-9cd4b7d5.js", assets + "/_app/chunks/vendor-2d792184.js"]
+      js: [assets + "/_app/start-bcbc51d4.js", assets + "/_app/chunks/vendor-b95819d0.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2517,7 +2535,7 @@ var module_lookup = {
     return designLead;
   })
 };
-var metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-1d6e97c6.js", "css": [], "js": ["layout.svelte-1d6e97c6.js", "chunks/vendor-2d792184.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-2a51005e.js", "css": [], "js": ["error.svelte-2a51005e.js", "chunks/vendor-2d792184.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-89d634e3.js", "css": ["assets/pages/index.svelte-e07ef555.css", "assets/tailwind-output-2584211a.css"], "js": ["pages/index.svelte-89d634e3.js", "chunks/vendor-2d792184.js", "chunks/tailwind-output-68f4a64f.js"], "styles": [] }, "src/routes/job/__layout.svelte": { "entry": "pages/job/__layout.svelte-cf6e319b.js", "css": ["assets/pages/index.svelte-e07ef555.css", "assets/tailwind-output-2584211a.css"], "js": ["pages/job/__layout.svelte-cf6e319b.js", "chunks/vendor-2d792184.js", "chunks/tailwind-output-68f4a64f.js"], "styles": [] }, "src/routes/job/influencer-manager.svelte": { "entry": "pages/job/influencer-manager.svelte-fb071dee.js", "css": [], "js": ["pages/job/influencer-manager.svelte-fb071dee.js", "chunks/vendor-2d792184.js"], "styles": [] }, "src/routes/job/full-stack-dev.svelte": { "entry": "pages/job/full-stack-dev.svelte-89ee4aff.js", "css": [], "js": ["pages/job/full-stack-dev.svelte-89ee4aff.js", "chunks/vendor-2d792184.js"], "styles": [] }, "src/routes/job/design-lead.svelte": { "entry": "pages/job/design-lead.svelte-df12be4c.js", "css": [], "js": ["pages/job/design-lead.svelte-df12be4c.js", "chunks/vendor-2d792184.js"], "styles": [] } };
+var metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-b8f6957b.js", "css": [], "js": ["layout.svelte-b8f6957b.js", "chunks/vendor-b95819d0.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-a03521ed.js", "css": [], "js": ["error.svelte-a03521ed.js", "chunks/vendor-b95819d0.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-3cfdfc04.js", "css": ["assets/pages/index.svelte-448a385d.css", "assets/tailwind-output-ef2fa5b6.css"], "js": ["pages/index.svelte-3cfdfc04.js", "chunks/vendor-b95819d0.js"], "styles": [] }, "src/routes/job/__layout.svelte": { "entry": "pages/job/__layout.svelte-ee3c4537.js", "css": ["assets/pages/job/__layout.svelte-ebe17faa.css", "assets/tailwind-output-ef2fa5b6.css"], "js": ["pages/job/__layout.svelte-ee3c4537.js", "chunks/vendor-b95819d0.js"], "styles": [] }, "src/routes/job/influencer-manager.svelte": { "entry": "pages/job/influencer-manager.svelte-f410ed1a.js", "css": [], "js": ["pages/job/influencer-manager.svelte-f410ed1a.js", "chunks/vendor-b95819d0.js"], "styles": [] }, "src/routes/job/full-stack-dev.svelte": { "entry": "pages/job/full-stack-dev.svelte-71d546f0.js", "css": [], "js": ["pages/job/full-stack-dev.svelte-71d546f0.js", "chunks/vendor-b95819d0.js"], "styles": [] }, "src/routes/job/design-lead.svelte": { "entry": "pages/job/design-lead.svelte-ac3353c7.js", "css": [], "js": ["pages/job/design-lead.svelte-ac3353c7.js", "chunks/vendor-b95819d0.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2567,90 +2585,128 @@ var error = /* @__PURE__ */ Object.freeze({
   "default": Error$1,
   load
 });
-var Overview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="${"text-white mb-14"}"><h3 class="${"font-semibold mt-20 sm:mt-32 text-2xl sm:text-3xl"}">Working at Public Rec</h3>
-	<div class="${"max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32"}"><div class="${"mw-"}"><p class="${"uppercase font-semibold text-xs mt-5 mb-4"}">Who We Are</p>
-			<p class="${"sm:max-w-[553px] text-sm sm:text-lg font-light leading-8 sm:leading-9"}">Our culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,
-				taking initiative is highly encouraged, and challenging the status quo is expected. Above
-				all else, we work hard and try to not take ourselves too seriously along the way.
-			</p>
-			<p class="${"uppercase font-semibold text-xs mt-14 sm:mt-20 mb-4"}">Where We Work</p>
-			<p class="${"sm:max-w-[553px] text-sm sm:text-lg font-light leading-8 sm:leading-9"}">Our headquarters are based in Chicago. We currently have a flexible work from home policy
-				that includes a mix of in-office and fully remote employees.
-			</p>
-			<p class="${"uppercase font-semibold text-xs mt-14 sm:mt-20 mb-4"}">What We Offer</p>
-
-			<ul class="${"sm:max-w-[553px] text-sm sm:text-lg list-disc list-inside font-light leading-8 sm:leading-9"}"><li>Flexible PTO policy with a required minimum</li>
-				<li>Health &amp; dental insurance coverage</li>
-				<li>Competitive parental leave policy</li>
-				<li>Generous employee discount</li>
-				<li>Flexible Work From Home model</li></ul></div>
-		</div></div>`;
-});
 var css$1 = {
-  code: "@tailwind base;@tailwind components;@tailwind utilities;",
-  map: `{"version":3,"file":"index.svelte","sources":["index.svelte"],"sourcesContent":["<script>\\n\\timport Overview from '../Overview.svelte';\\n\\timport '../styles/tailwind-output.css';\\n<\/script>\\n\\n<style global lang=\\"postcss\\">\\n\\t@tailwind base;\\n\\t@tailwind components;\\n\\t@tailwind utilities;\\n</style>\\n\\n<svelte:head>\\n\\t<title>Public Rec Careers</title>\\n</svelte:head>\\n\\n<nav>\\n\\t<div class=\\"pt-14 sm:pt-20 pb-8 px-4 sm:px-6 bg-black text-white\\">\\n\\t\\t<a href=\\"/\\">\\n\\t\\t\\t<img class=\\"w-32\\" src=\\"/logo.png\\" alt=\\"Public Rec logo\\" />\\n\\t\\t</a>\\n\\t</div>\\n</nav>\\n\\n<body class=\\"container mx-auto px-4 sm:px-6 bg-black\\">\\n\\t<div class=\\"bg-black text-white mx-auto\\">\\n\\t\\t<h1 class=\\"text-3xl sm:text-4xl mt-12 sm:mt-20 mb-7\\">Work With Us</h1>\\n\\t\\t<div class=\\"md:max-w-[696px]\\">\\n\\t\\t\\t<p class=\\"text-md sm:text-lg tracking-wide font-light leading-8 sm:leading-9\\">\\n\\t\\t\\t\\tPublic Rec is a digitally-native apparel brand on a mission to make comfort look good. We\u2019re\\n\\t\\t\\t\\ta small, rapidly growing team, and we\u2019re always on the lookout for good people who want to\\n\\t\\t\\t\\tdo great things.\\n\\t\\t\\t\\t<br />\\n\\t\\t\\t\\t<br />\\n\\t\\t\\t\\tThink it\u2019s a fit? Check out our open roles and apply below. If you don\u2019t see the role you\u2019re\\n\\t\\t\\t\\tlooking for, drop us a line at careers@publicrec.com.\\n\\t\\t\\t</p>\\n\\t\\t</div>\\n\\n\\t\\t<div class=\\"mt-20 sm:mt-32\\">\\n\\t\\t\\t<p class=\\"uppercase font-semibold text-xs mb-9\\">Open Jobs</p>\\n\\t\\t\\t<h3 class=\\"font-semibold text-2xl sm:text-3xl\\">Creative</h3>\\n\\t\\t\\t<hr class=\\"mt-4 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/full-stack-dev\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-xl sm:text-2xl\\">Full-Stack Developer</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-xs mt-3 font-semibold uppercase\\">Chicago / Los Angeles / Remote</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-xl self-center\\"\\n\\t\\t\\t\\t\\t\\thref=\\"/job/full-stack-dev\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/design-lead\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-xl sm:text-2xl\\">Design Lead</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-xs mt-3 font-semibold uppercase\\">Chicago / Los Angeles / Remote</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a class=\\"text-white hover:text-opacity-80 text-xl self-center\\" href=\\"/job/design-lead\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-6\\" />\\n\\t\\t\\t<h3 class=\\"font-semibold mt-20 text-2xl sm:text-3xl\\">Marketing</h3>\\n\\t\\t\\t<hr class=\\"mt-4 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/influencer-manager\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-xl sm:text-2xl\\">Influencer Manager</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-xs mt-3 font-semibold uppercase\\">Chicago</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-xl self-center\\"\\n\\t\\t\\t\\t\\t\\thref=\\"/job/influencer-manager\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-3\\" />\\n\\t\\t</div>\\n\\n\\t</div>\\n\\t<Overview />\\n</body>\\n\\n<footer class=\\"bg-black text-white\\">\\n\\t<div class=\\"container px-2 sm:px-6 mt-6 mx-auto\\">\\n\\t\\t<hr />\\n\\t\\t<div class=\\"pb-4 my-10 flex flex-row justify-between align-middle items-center mx-auto\\">\\n\\t\\t\\t<p class=\\"text-lg sm:text-2xl font-light\\">careers@publicrec.com</p>\\n\\t\\t\\t<a href=\\"https://www.instagram.com/publicrec/?hl=en\\">\\n\\t\\t\\t\\t<p\\n\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-xs sm:text-sm font-light uppercase text-right\\">\\n\\t\\t\\t\\t\\tInstagram\\n\\t\\t\\t\\t</p>\\n\\t\\t\\t</a>\\n\\t\\t</div>\\n\\t</div>\\n</footer>\\n"],"names":[],"mappings":"AAMC,UAAU,IAAI,CAAC,AACf,UAAU,UAAU,CAAC,AACrB,UAAU,SAAS,CAAC"}`
+  code: ".svelte-1k0fu4d{background-color:#141414}@tailwind base;@tailwind components;@tailwind utilities;",
+  map: `{"version":3,"file":"index.svelte","sources":["index.svelte"],"sourcesContent":["<script>\\n\\timport { fade } from 'svelte/transition';\\n\\timport '../styles/tailwind-output.css';\\n\\n\\tlet visible = true;\\n<\/script>\\n\\n<style lang=\\"postcss\\">\\n\\t* {\\n\\t\\tbackground-color: #141414;\\n\\t}\\n\\t@tailwind base;\\n\\t@tailwind components;\\n\\t@tailwind utilities;\\n</style>\\n\\n<svelte:head>\\n\\t<title>Public Rec Careers</title>\\n</svelte:head>\\n\\n<nav>\\n\\t<div class=\\"pt-14 sm:pt-20 pb-8 bg-black text-white\\">\\n\\t\\t<a href=\\"/\\">\\n\\t\\t\\t<img class=\\"w-[110px] sm:w-[130px]\\" src=\\"/logo.png\\" alt=\\"Public Rec logo\\" />\\n\\t\\t</a>\\n\\t</div>\\n</nav>\\n<label>\\n\\t<input type=\\"checkbox\\" bind:checked={visible} />\\n\\tvisible\\n</label>\\n\\n{#if visible}\\n\\t<p class=\\"text-white\\" transition:fade>Fades in and out</p>\\n{/if}\\n<body class=\\"container mx-auto px-4 sm:px-6\\">\\n\\n\\t<div class=\\"bg-black text-white mx-auto\\">\\n\\n\\t\\t<h1 class=\\"text-[48px] sm:text-[72px] mt-12 sm:mt-20 mb-7\\">Work With Us</h1>\\n\\t\\t<div class=\\"md:max-w-[696px]\\">\\n\\t\\t\\t<p class=\\"text-[16px] sm:text-[24px] tracking-wide leading-8 sm:leading-9\\">\\n\\t\\t\\t\\tPublic Rec is a digitally-native apparel brand on a mission to make comfort look good. We\u2019re\\n\\t\\t\\t\\ta small, rapidly growing team, and we\u2019re always on the lookout for good people who want to\\n\\t\\t\\t\\tdo great things.\\n\\t\\t\\t\\t<br />\\n\\t\\t\\t\\t<br />\\n\\t\\t\\t\\tThink it\u2019s a fit? Check out our open roles and apply below. If you don\u2019t see the role you\u2019re\\n\\t\\t\\t\\tlooking for, drop us a line at careers@publicrec.com.\\n\\t\\t\\t</p>\\n\\t\\t</div>\\n\\n\\t\\t<div class=\\"mt-20 sm:mt-32\\">\\n\\t\\t\\t<p class=\\"uppercase font-semibold text-[15px] tracking-widest mb-9\\">Open Jobs</p>\\n\\t\\t\\t<h3 class=\\"font-semibold text-[30px] sm:text-[48px]\\">Creative</h3>\\n\\t\\t\\t<hr class=\\"mt-4 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/full-stack-dev\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-[20px] sm:text-[32px]\\">\\n\\t\\t\\t\\t\\t\\t\\tFull-Stack Developer\\n\\t\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase\\">\\n\\t\\t\\t\\t\\t\\tChicago / Los Angeles / Remote\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-xl self-center\\"\\n\\t\\t\\t\\t\\t\\thref=\\"/job/full-stack-dev\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/design-lead\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-[20px] sm:text-[32px]\\">Design Lead</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase\\">\\n\\t\\t\\t\\t\\t\\tChicago / Los Angeles / Remote\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a class=\\"text-white hover:text-opacity-80 text-xl self-center\\" href=\\"/job/design-lead\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-6\\" />\\n\\t\\t\\t<h3 class=\\"font-semibold mt-20 text-[30px] sm:text-[48px]\\">Marketing</h3>\\n\\t\\t\\t<hr class=\\"mt-4 mb-6\\" />\\n\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t<div class=\\"flex-grow\\">\\n\\t\\t\\t\\t\\t<a href=\\"/job/influencer-manager\\">\\n\\t\\t\\t\\t\\t\\t<p class=\\"text-white hover:text-opacity-80 text-[20px] sm:text-[32px]\\">\\n\\t\\t\\t\\t\\t\\t\\tInfluencer Manager\\n\\t\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t\\t<p class=\\"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase\\">Chicago</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t<div class=\\"flex\\">\\n\\t\\t\\t\\t\\t<a\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-xl self-center\\"\\n\\t\\t\\t\\t\\t\\thref=\\"/job/influencer-manager\\">\\n\\t\\t\\t\\t\\t\\t<p>&#8594;</p>\\n\\t\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t<hr class=\\"mt-8 mb-3\\" />\\n\\t\\t</div>\\n\\n\\t</div>\\n\\t<div class=\\"text-white mb-8\\">\\n\\t\\t<h3 class=\\"font-semibold mt-20 sm:mt-32 text-[30px] sm:text-[48px]\\">Working at Public Rec</h3>\\n\\t\\t<div class=\\"max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32\\">\\n\\t\\t\\t<div>\\n\\t\\t\\t\\t<p class=\\"uppercase font-semibold text-[15px] tracking-widest mt-5 mb-4\\">Who We Are</p>\\n\\t\\t\\t\\t<p class=\\"sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9\\">\\n\\t\\t\\t\\t\\tOur culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,\\n\\t\\t\\t\\t\\ttaking initiative is highly encouraged, and challenging the status quo is expected. Above\\n\\t\\t\\t\\t\\tall else, we work hard and try to not take ourselves too seriously along the way.\\n\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t<p class=\\"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4\\">\\n\\t\\t\\t\\t\\tWhere We Work\\n\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t<p class=\\"sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9\\">\\n\\t\\t\\t\\t\\tOur headquarters are based in Chicago. We currently have a flexible work from home policy\\n\\t\\t\\t\\t\\tthat includes a mix of in-office and fully remote employees.\\n\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t<p class=\\"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4\\">\\n\\t\\t\\t\\t\\tWhat We Offer\\n\\t\\t\\t\\t</p>\\n\\n\\t\\t\\t\\t<ul\\n\\t\\t\\t\\t\\tclass=\\"sm:max-w-[553px] text-[14px] sm:text-[24px] list-disc list-inside font-light\\n\\t\\t\\t\\t\\tleading-8 sm:leading-9\\">\\n\\t\\t\\t\\t\\t<li>Flexible PTO policy with a required minimum</li>\\n\\t\\t\\t\\t\\t<li>Health & dental insurance coverage</li>\\n\\t\\t\\t\\t\\t<li>Competitive parental leave policy</li>\\n\\t\\t\\t\\t\\t<li>Generous employee discount</li>\\n\\t\\t\\t\\t\\t<li>Flexible Work From Home model</li>\\n\\t\\t\\t\\t</ul>\\n\\n\\t\\t\\t</div>\\n\\t\\t\\t<!-- <div class=\\"w-5/12\\">\\n\\t\\t\\t\\t<img class=\\"mt-10 sm:mt-2\\" src=\\"/office2.jpg\\" alt=\\"Public Rec office\\" />\\n\\t\\t\\t\\t<img class=\\"mt-10 sm:mt-14\\" src=\\"/office3.jpg\\" alt=\\"Public Rec office\\" />\\n\\t\\t\\t</div> -->\\n\\t\\t</div>\\n\\n\\t</div>\\n</body>\\n\\n<footer class=\\"bg-black text-white\\">\\n\\t<div class=\\"container mt-6 mx-auto\\">\\n\\t\\t<hr />\\n\\t\\t<div\\n\\t\\t\\tclass=\\"pb-4 my-12 sm:mt-[88px] flex flex-col sm:flex-row justify-between align-middle\\n\\t\\t\\tsm:items-center mx-auto\\">\\n\\t\\t\\t<p class=\\"text-[20px] sm:text-[40px] font-light\\">careers@publicrec.com</p>\\n\\t\\t\\t<div class=\\"flex flex-col\\">\\n\\t\\t\\t\\t<a class=\\"mt-3 sm:mt-0\\" href=\\"https://www.instagram.com/publicrec/?hl=en\\">\\n\\t\\t\\t\\t\\t<p\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right\\">\\n\\t\\t\\t\\t\\t\\tInstagram\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t<a href=\\"https://www.youtube.com/c/publicrec\\">\\n\\t\\t\\t\\t\\t<p\\n\\t\\t\\t\\t\\t\\tclass=\\"text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right\\">\\n\\t\\t\\t\\t\\t\\tYoutube\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</a>\\n\\t\\t\\t</div>\\n\\n\\t\\t</div>\\n\\t</div>\\n</footer>\\n"],"names":[],"mappings":"AAQC,eAAE,CAAC,AACF,gBAAgB,CAAE,OAAO,AAC1B,CAAC,AACD,UAAU,IAAI,CAAC,AACf,UAAU,UAAU,CAAC,AACrB,UAAU,SAAS,CAAC"}`
 };
 var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let visible = true;
   $$result.css.add(css$1);
   return `${$$result.head += `${$$result.title = `<title>Public Rec Careers</title>`, ""}`, ""}
 
-<nav><div class="${"pt-14 sm:pt-20 pb-8 px-4 sm:px-6 bg-black text-white"}"><a href="${"/"}"><img class="${"w-32"}" src="${"/logo.png"}" alt="${"Public Rec logo"}"></a></div></nav>
+<nav class="${"svelte-1k0fu4d"}"><div class="${"pt-14 sm:pt-20 pb-8 bg-black text-white svelte-1k0fu4d"}"><a href="${"/"}" class="${"svelte-1k0fu4d"}"><img class="${"w-[110px] sm:w-[130px] svelte-1k0fu4d"}" src="${"/logo.png"}" alt="${"Public Rec logo"}"></a></div></nav>
+<label class="${"svelte-1k0fu4d"}"><input type="${"checkbox"}" class="${"svelte-1k0fu4d"}"${add_attribute("checked", visible, 1)}>
+	visible
+</label>
 
-<body class="${"container mx-auto px-4 sm:px-6 bg-black"}"><div class="${"bg-black text-white mx-auto"}"><h1 class="${"text-3xl sm:text-4xl mt-12 sm:mt-20 mb-7"}">Work With Us</h1>
-		<div class="${"md:max-w-[696px]"}"><p class="${"text-md sm:text-lg tracking-wide font-light leading-8 sm:leading-9"}">Public Rec is a digitally-native apparel brand on a mission to make comfort look good. We\u2019re
+${`<p class="${"text-white svelte-1k0fu4d"}">Fades in and out</p>`}
+<body class="${"container mx-auto px-4 sm:px-6 svelte-1k0fu4d"}"><div class="${"bg-black text-white mx-auto svelte-1k0fu4d"}"><h1 class="${"text-[48px] sm:text-[72px] mt-12 sm:mt-20 mb-7 svelte-1k0fu4d"}">Work With Us</h1>
+		<div class="${"md:max-w-[696px] svelte-1k0fu4d"}"><p class="${"text-[16px] sm:text-[24px] tracking-wide leading-8 sm:leading-9 svelte-1k0fu4d"}">Public Rec is a digitally-native apparel brand on a mission to make comfort look good. We\u2019re
 				a small, rapidly growing team, and we\u2019re always on the lookout for good people who want to
 				do great things.
-				<br>
-				<br>
+				<br class="${"svelte-1k0fu4d"}">
+				<br class="${"svelte-1k0fu4d"}">
 				Think it\u2019s a fit? Check out our open roles and apply below. If you don\u2019t see the role you\u2019re
 				looking for, drop us a line at careers@publicrec.com.
 			</p></div>
 
-		<div class="${"mt-20 sm:mt-32"}"><p class="${"uppercase font-semibold text-xs mb-9"}">Open Jobs</p>
-			<h3 class="${"font-semibold text-2xl sm:text-3xl"}">Creative</h3>
-			<hr class="${"mt-4 mb-6"}">
-			<div class="${"flex"}"><div class="${"flex-grow"}"><a href="${"/job/full-stack-dev"}"><p class="${"text-white hover:text-opacity-80 text-xl sm:text-2xl"}">Full-Stack Developer</p></a>
-					<p class="${"text-xs mt-3 font-semibold uppercase"}">Chicago / Los Angeles / Remote</p></div>
-				<div class="${"flex"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center"}" href="${"/job/full-stack-dev"}"><p>\u2192</p></a></div></div>
-			<hr class="${"mt-8 mb-6"}">
-			<div class="${"flex"}"><div class="${"flex-grow"}"><a href="${"/job/design-lead"}"><p class="${"text-white hover:text-opacity-80 text-xl sm:text-2xl"}">Design Lead</p></a>
-					<p class="${"text-xs mt-3 font-semibold uppercase"}">Chicago / Los Angeles / Remote</p></div>
-				<div class="${"flex"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center"}" href="${"/job/design-lead"}"><p>\u2192</p></a></div></div>
-			<hr class="${"mt-8 mb-6"}">
-			<h3 class="${"font-semibold mt-20 text-2xl sm:text-3xl"}">Marketing</h3>
-			<hr class="${"mt-4 mb-6"}">
-			<div class="${"flex"}"><div class="${"flex-grow"}"><a href="${"/job/influencer-manager"}"><p class="${"text-white hover:text-opacity-80 text-xl sm:text-2xl"}">Influencer Manager</p></a>
-					<p class="${"text-xs mt-3 font-semibold uppercase"}">Chicago</p></div>
-				<div class="${"flex"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center"}" href="${"/job/influencer-manager"}"><p>\u2192</p></a></div></div>
-			<hr class="${"mt-8 mb-3"}"></div></div>
-	${validate_component(Overview, "Overview").$$render($$result, {}, {}, {})}</body>
+		<div class="${"mt-20 sm:mt-32 svelte-1k0fu4d"}"><p class="${"uppercase font-semibold text-[15px] tracking-widest mb-9 svelte-1k0fu4d"}">Open Jobs</p>
+			<h3 class="${"font-semibold text-[30px] sm:text-[48px] svelte-1k0fu4d"}">Creative</h3>
+			<hr class="${"mt-4 mb-6 svelte-1k0fu4d"}">
+			<div class="${"flex svelte-1k0fu4d"}"><div class="${"flex-grow svelte-1k0fu4d"}"><a href="${"/job/full-stack-dev"}" class="${"svelte-1k0fu4d"}"><p class="${"text-white hover:text-opacity-80 text-[20px] sm:text-[32px] svelte-1k0fu4d"}">Full-Stack Developer
+						</p></a>
+					<p class="${"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase svelte-1k0fu4d"}">Chicago / Los Angeles / Remote
+					</p></div>
+				<div class="${"flex svelte-1k0fu4d"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center svelte-1k0fu4d"}" href="${"/job/full-stack-dev"}"><p class="${"svelte-1k0fu4d"}">\u2192</p></a></div></div>
+			<hr class="${"mt-8 mb-6 svelte-1k0fu4d"}">
+			<div class="${"flex svelte-1k0fu4d"}"><div class="${"flex-grow svelte-1k0fu4d"}"><a href="${"/job/design-lead"}" class="${"svelte-1k0fu4d"}"><p class="${"text-white hover:text-opacity-80 text-[20px] sm:text-[32px] svelte-1k0fu4d"}">Design Lead</p></a>
+					<p class="${"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase svelte-1k0fu4d"}">Chicago / Los Angeles / Remote
+					</p></div>
+				<div class="${"flex svelte-1k0fu4d"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center svelte-1k0fu4d"}" href="${"/job/design-lead"}"><p class="${"svelte-1k0fu4d"}">\u2192</p></a></div></div>
+			<hr class="${"mt-8 mb-6 svelte-1k0fu4d"}">
+			<h3 class="${"font-semibold mt-20 text-[30px] sm:text-[48px] svelte-1k0fu4d"}">Marketing</h3>
+			<hr class="${"mt-4 mb-6 svelte-1k0fu4d"}">
+			<div class="${"flex svelte-1k0fu4d"}"><div class="${"flex-grow svelte-1k0fu4d"}"><a href="${"/job/influencer-manager"}" class="${"svelte-1k0fu4d"}"><p class="${"text-white hover:text-opacity-80 text-[20px] sm:text-[32px] svelte-1k0fu4d"}">Influencer Manager
+						</p></a>
+					<p class="${"text-[11px] sm:text-[14px] mt-3 font-semibold uppercase svelte-1k0fu4d"}">Chicago</p></div>
+				<div class="${"flex svelte-1k0fu4d"}"><a class="${"text-white hover:text-opacity-80 text-xl self-center svelte-1k0fu4d"}" href="${"/job/influencer-manager"}"><p class="${"svelte-1k0fu4d"}">\u2192</p></a></div></div>
+			<hr class="${"mt-8 mb-3 svelte-1k0fu4d"}"></div></div>
+	<div class="${"text-white mb-8 svelte-1k0fu4d"}"><h3 class="${"font-semibold mt-20 sm:mt-32 text-[30px] sm:text-[48px] svelte-1k0fu4d"}">Working at Public Rec</h3>
+		<div class="${"max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32 svelte-1k0fu4d"}"><div class="${"svelte-1k0fu4d"}"><p class="${"uppercase font-semibold text-[15px] tracking-widest mt-5 mb-4 svelte-1k0fu4d"}">Who We Are</p>
+				<p class="${"sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9 svelte-1k0fu4d"}">Our culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,
+					taking initiative is highly encouraged, and challenging the status quo is expected. Above
+					all else, we work hard and try to not take ourselves too seriously along the way.
+				</p>
+				<p class="${"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4 svelte-1k0fu4d"}">Where We Work
+				</p>
+				<p class="${"sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9 svelte-1k0fu4d"}">Our headquarters are based in Chicago. We currently have a flexible work from home policy
+					that includes a mix of in-office and fully remote employees.
+				</p>
+				<p class="${"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4 svelte-1k0fu4d"}">What We Offer
+				</p>
 
-<footer class="${"bg-black text-white"}"><div class="${"container px-2 sm:px-6 mt-6 mx-auto"}"><hr>
-		<div class="${"pb-4 my-10 flex flex-row justify-between align-middle items-center mx-auto"}"><p class="${"text-lg sm:text-2xl font-light"}">careers@publicrec.com</p>
-			<a href="${"https://www.instagram.com/publicrec/?hl=en"}"><p class="${"text-white hover:text-opacity-80 text-xs sm:text-sm font-light uppercase text-right"}">Instagram
-				</p></a></div></div></footer>`;
+				<ul class="${"sm:max-w-[553px] text-[14px] sm:text-[24px] list-disc list-inside font-light leading-8 sm:leading-9 svelte-1k0fu4d"}"><li class="${"svelte-1k0fu4d"}">Flexible PTO policy with a required minimum</li>
+					<li class="${"svelte-1k0fu4d"}">Health &amp; dental insurance coverage</li>
+					<li class="${"svelte-1k0fu4d"}">Competitive parental leave policy</li>
+					<li class="${"svelte-1k0fu4d"}">Generous employee discount</li>
+					<li class="${"svelte-1k0fu4d"}">Flexible Work From Home model</li></ul></div>
+			</div></div></body>
+
+<footer class="${"bg-black text-white svelte-1k0fu4d"}"><div class="${"container mt-6 mx-auto svelte-1k0fu4d"}"><hr class="${"svelte-1k0fu4d"}">
+		<div class="${"pb-4 my-12 sm:mt-[88px] flex flex-col sm:flex-row justify-between align-middle sm:items-center mx-auto svelte-1k0fu4d"}"><p class="${"text-[20px] sm:text-[40px] font-light svelte-1k0fu4d"}">careers@publicrec.com</p>
+			<div class="${"flex flex-col svelte-1k0fu4d"}"><a class="${"mt-3 sm:mt-0 svelte-1k0fu4d"}" href="${"https://www.instagram.com/publicrec/?hl=en"}"><p class="${"text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right svelte-1k0fu4d"}">Instagram
+					</p></a>
+				<a href="${"https://www.youtube.com/c/publicrec"}" class="${"svelte-1k0fu4d"}"><p class="${"text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right svelte-1k0fu4d"}">Youtube
+					</p></a></div></div></div></footer>`;
 });
 var index = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
   "default": Routes
 });
+var Overview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  return `<div class="${"text-black mb-14"}"><hr class="${"mt-10"}">
+	<h3 class="${"font-semibold mt-4 sm:mt-[50px] text-[30px] sm:text-[48px]"}">Working at Public Rec</h3>
+	<div class="${"max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32"}"><div><p class="${"uppercase font-semibold text-[15px] tracking-widest mt-5 mb-4"}">Who We Are</p>
+			<p class="${"sm:max-w-[553px] text-[16px] sm:text-[20px] font-light leading-8 sm:leading-9"}">Our culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,
+				taking initiative is highly encouraged, and challenging the status quo is expected. Above
+				all else, we work hard and try to not take ourselves too seriously along the way.
+			</p>
+			<p class="${"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4"}">Where We Work
+			</p>
+			<p class="${"sm:max-w-[553px] text-[16px] sm:text-[20px] font-light leading-8 sm:leading-9"}">Our headquarters are based in Chicago. We currently have a flexible work from home policy
+				that includes a mix of in-office and fully remote employees.
+			</p>
+			<p class="${"uppercase font-semibold text-[15px] tracking-widest mt-14 sm:mt-20 mb-4"}">What We Offer
+			</p>
+
+			<ul class="${"sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light leading-8 sm:leading-9"}"><li>Flexible PTO policy with a required minimum</li>
+				<li>Health &amp; dental insurance coverage</li>
+				<li>Competitive parental leave policy</li>
+				<li>Generous employee discount</li>
+				<li>Flexible Work From Home model</li></ul></div>
+		</div></div>`;
+});
 var css = {
-  code: "@tailwind base;@tailwind components;@tailwind utilities;",
-  map: `{"version":3,"file":"__layout.svelte","sources":["__layout.svelte"],"sourcesContent":["<script>\\n\\timport '../../styles/tailwind-output.css';\\n\\timport Overview from '../../Overview.svelte';\\n<\/script>\\n\\n<style global lang=\\"postcss\\">\\n\\t@tailwind base;\\n\\t@tailwind components;\\n\\t@tailwind utilities;\\n</style>\\n\\n<nav>\\n\\t<div class=\\"pt-14 sm:pt-20 pb-8 px-4 sm:px-6 bg-white text-black\\">\\n\\t\\t<a href=\\"/\\">\\n\\t\\t\\t<img class=\\"w-32\\" src=\\"/logo-black.png\\" alt=\\"Public Rec logo\\" />\\n\\t\\t</a>\\n\\t</div>\\n</nav>\\n\\n<body class=\\"container mx-auto px-4 sm:px-6 bg-white\\">\\n\\t<slot />\\n\\t<Overview />\\n</body>\\n\\n<footer class=\\"bg-white text-black\\">\\n\\t<div class=\\"container px-2 sm:px-6 mt-6 mx-auto\\">\\n\\t\\t<hr />\\n\\t\\t<div class=\\"pb-4 my-10 flex flex-row justify-between align-middle items-center mx-auto\\">\\n\\t\\t\\t<p class=\\"text-lg sm:text-2xl font-light\\">careers@publicrec.com</p>\\n\\t\\t\\t<a href=\\"https://www.instagram.com/publicrec/?hl=en\\">\\n\\t\\t\\t\\t<p\\n\\t\\t\\t\\t\\tclass=\\"text-black hover:text-opacity-80 text-xs sm:text-sm font-light uppercase text-right\\">\\n\\t\\t\\t\\t\\tInstagram\\n\\t\\t\\t\\t</p>\\n\\t\\t\\t</a>\\n\\t\\t</div>\\n\\t</div>\\n</footer>\\n"],"names":[],"mappings":"AAMC,UAAU,IAAI,CAAC,AACf,UAAU,UAAU,CAAC,AACrB,UAAU,SAAS,CAAC"}`
+  code: ".svelte-1o48dhs{background-color:#fff}@tailwind base;@tailwind components;@tailwind utilities;",
+  map: `{"version":3,"file":"__layout.svelte","sources":["__layout.svelte"],"sourcesContent":["<script>\\n\\timport '../../styles/tailwind-output.css';\\n\\timport Overview from '../../Overview.svelte';\\n<\/script>\\n\\n<style lang=\\"postcss\\">\\n\\t* {\\n\\t\\tbackground-color: #fff;\\n\\t}\\n\\n\\t@tailwind base;\\n\\t@tailwind components;\\n\\t@tailwind utilities;\\n</style>\\n\\n<nav class=\\"bg-white\\">\\n\\t<div class=\\"pt-14 sm:pt-20 pb-8 bg-white text-black\\">\\n\\t\\t<a href=\\"/\\">\\n\\t\\t\\t<img class=\\"w-[110px] sm:w-[130px]\\" src=\\"/logo-black.png\\" alt=\\"Public Rec logo\\" />\\n\\t\\t</a>\\n\\t</div>\\n</nav>\\n\\n<body class=\\"container mx-auto px-4 sm:px-6 \\">\\n\\t<div class=\\"mt-12 sm:mt-20 mb-3 sm:mb-4\\">\\n\\t\\t<a class=\\"text-black uppercase text-[11px] hover:text-opacity-70 \\" href=\\"/\\">\\n\\t\\t\\t&#8592 Back to Open Jobs\\n\\t\\t</a>\\n\\t</div>\\n\\n\\t<slot />\\n\\t<Overview />\\n</body>\\n\\n<footer class=\\"bg-white text-black\\">\\n\\t<div class=\\"container mt-6 mx-auto\\">\\n\\t\\t<hr />\\n\\t\\t<div\\n\\t\\t\\tclass=\\"pb-4 my-12 sm:mt-[88px] flex flex-row justify-between align-middle items-center mx-auto\\">\\n\\t\\t\\t<p class=\\"text-[24px] sm:text-[40px] font-light\\">careers@publicrec.com</p>\\n\\t\\t\\t<div class=\\"flex flex-col\\">\\n\\t\\t\\t\\t<a href=\\"https://www.instagram.com/publicrec/?hl=en\\">\\n\\t\\t\\t\\t\\t<p class=\\"text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right\\">\\n\\t\\t\\t\\t\\t\\tInstagram\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</a>\\n\\t\\t\\t\\t<a href=\\"https://www.youtube.com/c/publicrec\\">\\n\\t\\t\\t\\t\\t<p class=\\"text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right\\">\\n\\t\\t\\t\\t\\t\\tYoutube\\n\\t\\t\\t\\t\\t</p>\\n\\t\\t\\t\\t</a>\\n\\t\\t\\t</div>\\n\\n\\t\\t</div>\\n\\t</div>\\n</footer>\\n"],"names":[],"mappings":"AAMC,eAAE,CAAC,AACF,gBAAgB,CAAE,IAAI,AACvB,CAAC,AAED,UAAU,IAAI,CAAC,AACf,UAAU,UAAU,CAAC,AACrB,UAAU,SAAS,CAAC"}`
 };
 var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css);
-  return `<nav><div class="${"pt-14 sm:pt-20 pb-8 px-4 sm:px-6 bg-white text-black"}"><a href="${"/"}"><img class="${"w-32"}" src="${"/logo-black.png"}" alt="${"Public Rec logo"}"></a></div></nav>
+  return `<nav class="${"bg-white svelte-1o48dhs"}"><div class="${"pt-14 sm:pt-20 pb-8 bg-white text-black svelte-1o48dhs"}"><a href="${"/"}" class="${"svelte-1o48dhs"}"><img class="${"w-[110px] sm:w-[130px] svelte-1o48dhs"}" src="${"/logo-black.png"}" alt="${"Public Rec logo"}"></a></div></nav>
 
-<body class="${"container mx-auto px-4 sm:px-6 bg-white"}">${slots.default ? slots.default({}) : ``}
+<body class="${"container mx-auto px-4 sm:px-6  svelte-1o48dhs"}"><div class="${"mt-12 sm:mt-20 mb-3 sm:mb-4 svelte-1o48dhs"}"><a class="${"text-black uppercase text-[11px] hover:text-opacity-70  svelte-1o48dhs"}" href="${"/"}">\u2190 Back to Open Jobs
+		</a></div>
+
+	${slots.default ? slots.default({}) : ``}
 	${validate_component(Overview, "Overview").$$render($$result, {}, {}, {})}</body>
 
-<footer class="${"bg-white text-black"}"><div class="${"container px-2 sm:px-6 mt-6 mx-auto"}"><hr>
-		<div class="${"pb-4 my-10 flex flex-row justify-between align-middle items-center mx-auto"}"><p class="${"text-lg sm:text-2xl font-light"}">careers@publicrec.com</p>
-			<a href="${"https://www.instagram.com/publicrec/?hl=en"}"><p class="${"text-black hover:text-opacity-80 text-xs sm:text-sm font-light uppercase text-right"}">Instagram
-				</p></a></div></div></footer>`;
+<footer class="${"bg-white text-black svelte-1o48dhs"}"><div class="${"container mt-6 mx-auto svelte-1o48dhs"}"><hr class="${"svelte-1o48dhs"}">
+		<div class="${"pb-4 my-12 sm:mt-[88px] flex flex-row justify-between align-middle items-center mx-auto svelte-1o48dhs"}"><p class="${"text-[24px] sm:text-[40px] font-light svelte-1o48dhs"}">careers@publicrec.com</p>
+			<div class="${"flex flex-col svelte-1o48dhs"}"><a href="${"https://www.instagram.com/publicrec/?hl=en"}" class="${"svelte-1o48dhs"}"><p class="${"text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right svelte-1o48dhs"}">Instagram
+					</p></a>
+				<a href="${"https://www.youtube.com/c/publicrec"}" class="${"svelte-1o48dhs"}"><p class="${"text-black hover:text-opacity-80 text-[14px] font-light uppercase text-right svelte-1o48dhs"}">Youtube
+					</p></a></div></div></div></footer>`;
 });
 var __layout = /* @__PURE__ */ Object.freeze({
   __proto__: null,
@@ -2659,9 +2715,9 @@ var __layout = /* @__PURE__ */ Object.freeze({
 });
 var Influencer_manager = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${$$result.head += `${$$result.title = `<title>Public Rec Careers | Influencer Manager</title>`, ""}`, ""}
-<div class="${"text-white"}"><h1 class="${"text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5"}">Influencer Manager</h1>
-	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-lg sm:text-xl"}">Overview</p>
-			<p class="${"mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
+<div class="${"text-black"}"><h1 class="${"text-[24px] sm:text-[48px] mb-5"}">Influencer Manager</h1>
+	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-[20px] sm:text-[28px]"}">Overview</p>
+			<p class="${"text-[16px] sm:text-[20px] mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
 				full-stack web developer to help bring web development in-house as we transition from our
 				third-party agency.
 				<br>
@@ -2690,7 +2746,7 @@ var Influencer_manager = create_ssr_component(($$result, $$props, $$bindings, sl
 				We are committed to building a diverse and inclusive environment at Public Rec. Please
 				submit resumes to careers@publicrec.com.
 			</p></div>
-		<div class="${"hidden lg:block mt-12 sm:w-72"}"><div class="${"bg-gray-300"}"><p class="${"text-black p-6"}">To apply for this role, please email your resume, cover letter, and link to online
+		<div class="${"hidden lg:block mt-12 sm:w-72"}"><div class="${"bg-gray-300 border"}"><p class="${"text-black p-7"}">To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com
 				</p></div></div></div></div>`;
 });
@@ -2701,9 +2757,10 @@ var influencerManager = /* @__PURE__ */ Object.freeze({
 });
 var Full_stack_dev = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${$$result.head += `${$$result.title = `<title>Public Rec Careers | Full Stack Developer</title>`, ""}`, ""}
-<div class="${"text-black"}"><h1 class="${"text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5"}">Full Stack Developer</h1>
-	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-lg sm:text-xl"}">Overview</p>
-			<p class="${"mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
+
+<div class="${"text-black"}"><h1 class="${"text-[24px] sm:text-[48px] mb-5"}">Full Stack Developer</h1>
+	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-[20px] sm:text-[28px]"}">Overview</p>
+			<p class="${"text-[16px] sm:text-[20px] mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
 				full-stack web developer to help bring web development in-house as we transition from our
 				third-party agency.
 				<br>
@@ -2732,7 +2789,7 @@ var Full_stack_dev = create_ssr_component(($$result, $$props, $$bindings, slots)
 				We are committed to building a diverse and inclusive environment at Public Rec. Please
 				submit resumes to careers@publicrec.com.
 			</p></div>
-		<div class="${"hidden lg:block mt-12 sm:w-72"}"><div class="${"bg-gray-300"}"><p class="${"text-black p-6"}">To apply for this role, please email your resume, cover letter, and link to online
+		<div class="${"hidden lg:block sm:w-72"}"><div class="${"bg-gray-300 border"}"><p class="${"text-black p-7"}">To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com
 				</p></div></div></div></div>`;
 });
@@ -2743,9 +2800,9 @@ var fullStackDev = /* @__PURE__ */ Object.freeze({
 });
 var Design_lead = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${$$result.head += `${$$result.title = `<title>Public Rec Careers | Design Lead</title>`, ""}`, ""}
-<div class="${"text-white"}"><h1 class="${"text-3xl sm:text-4xl mt-12 sm:mt-20 mb-5"}">Design Lead</h1>
-	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-lg sm:text-xl"}">Overview</p>
-			<p class="${"mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
+<div class="${"bg-white text-black"}"><h1 class="${"text-[24px] sm:text-[48px] mb-5"}">Design Lead</h1>
+	<div class="${"container flex flex-grow justify-between"}"><div class="${"mt-12 sm:w-7/12"}"><p class="${"text-[20px] sm:text-[28px]"}">Overview</p>
+			<p class="${"text-[16px] sm:text-[20px] mt-3"}">Public Rec is building a leisure apparel brand with products people love. We\u2019re seeking a
 				full-stack web developer to help bring web development in-house as we transition from our
 				third-party agency.
 				<br>
@@ -2774,7 +2831,7 @@ var Design_lead = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 				We are committed to building a diverse and inclusive environment at Public Rec. Please
 				submit resumes to careers@publicrec.com.
 			</p></div>
-		<div class="${"hidden lg:block mt-12 sm:w-72"}"><div class="${"bg-gray-300"}"><p class="${"text-white p-6"}">To apply for this role, please email your resume, cover letter, and link to online
+		<div class="${"hidden lg:block mt-12 sm:w-72"}"><div class="${"bg-gray-300 border"}"><p class="${"text-black p-7"}">To apply for this role, please email your resume, cover letter, and link to online
 					portfolio to careers@publicrec.com
 				</p></div></div></div></div>`;
 });

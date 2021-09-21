@@ -1,5 +1,6 @@
 <script>
 	import '../styles/tailwind-output.css';
+	import Arrow from './Arrow.svelte';
 </script>
 
 <style lang="postcss">
@@ -53,11 +54,28 @@
 							Chicago / Los Angeles / Remote
 						</p>
 					</div>
-					<div class="flex">
-						<a
-							class="text-white hover:text-opacity-80 text-xl self-center"
-							href="/job/full-stack-dev">
-							<p>&#8594;</p>
+					<div class="hidden sm:flex">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="36"
+								height="17"
+								stroke="white"
+								fill="white" />
+						</a>
+					</div>
+					<div class="flex sm:hidden">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="25"
+								height="12"
+								stroke="white"
+								fill="white" />
 						</a>
 					</div>
 				</div>
@@ -71,9 +89,28 @@
 							Chicago / Los Angeles / Remote
 						</p>
 					</div>
-					<div class="flex">
-						<a class="text-white hover:text-opacity-80 text-xl self-center" href="/job/design-lead">
-							<p>&#8594;</p>
+					<div class="hidden sm:flex">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="36"
+								height="17"
+								stroke="white"
+								fill="white" />
+						</a>
+					</div>
+					<div class="flex sm:hidden">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="25"
+								height="12"
+								stroke="white"
+								fill="white" />
 						</a>
 					</div>
 				</div>
@@ -89,11 +126,28 @@
 						</a>
 						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold uppercase">Chicago</p>
 					</div>
-					<div class="flex">
-						<a
-							class="text-white hover:text-opacity-80 text-xl self-center"
-							href="/job/influencer-manager">
-							<p>&#8594;</p>
+					<div class="hidden sm:flex">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="36"
+								height="17"
+								stroke="white"
+								fill="white" />
+						</a>
+					</div>
+					<div class="flex sm:hidden">
+						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="25"
+								height="12"
+								stroke="white"
+								fill="white" />
 						</a>
 					</div>
 				</div>

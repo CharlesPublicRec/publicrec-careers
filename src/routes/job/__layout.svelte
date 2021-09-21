@@ -1,6 +1,7 @@
 <script>
 	import '../../styles/tailwind-output.css';
 	import Overview from '../../Overview.svelte';
+	import Arrow from '../Arrow.svelte';
 </script>
 
 <style lang="postcss">
@@ -23,9 +24,17 @@
 	</nav>
 
 	<div class="container px-7 sm:px-0 mx-auto">
-		<div class="mt-10 sm:mt-20 mb-3 sm:mb-4">
-			<a class="text-black uppercase text-[11px] hover:text-opacity-70 " href="/">
-				&#8592 Back to Open Jobs
+		<div class="flex align-center mt-10 sm:mt-20 mb-3 sm:mb-4 align-center hover:opacity-70">
+			<a class="text-black uppercase text-[11px]" href="/">
+				<Arrow
+					icon="arrowLeft"
+					classes="inline mr-2 sm:mr-4"
+					width="20"
+					height="10"
+					viewBox="0 0 10 10"
+					stroke="black"
+					fill="black" />
+				Back to Open Jobs
 			</a>
 		</div>
 		<div class="text-black">

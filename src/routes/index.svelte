@@ -18,13 +18,13 @@
 
 <div class="bg-black mx-auto h-fill">
 	<nav>
-		<div class="container mx-auto pt-14 sm:pt-20 pb-8 px-6 sm:px-0 bg-black text-white">
+		<div class="container mx-auto pt-14 sm:pt-20 pb-8 px-6 bg-black text-white">
 			<a href="/">
 				<img class="w-[110px] sm:w-[130px]" src="/logo.png" alt="Public Rec logo" />
 			</a>
 		</div>
 	</nav>
-	<div class="container px-6 sm:px-0 mx-auto">
+	<div class="container px-6 mx-auto">
 		<div class="bg-black text-white mx-auto">
 			<h1 class="text-[48px] sm:text-[72px] mt-12 sm:mt-20 mb-7">Work With Us</h1>
 			<div class="md:max-w-[696px]">
@@ -50,7 +50,7 @@
 								Full-Stack Developer
 							</p>
 						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold uppercase">
+						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-wider uppercase">
 							Chicago / Los Angeles / Remote
 						</p>
 					</div>
@@ -85,7 +85,7 @@
 						<a href="/job/design-lead">
 							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">Design Lead</p>
 						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold uppercase">
+						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-wider uppercase">
 							Chicago / Los Angeles / Remote
 						</p>
 					</div>
@@ -124,7 +124,9 @@
 								Influencer Manager
 							</p>
 						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold uppercase">Chicago</p>
+						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-wider uppercase">
+							Chicago / Remote
+						</p>
 					</div>
 					<div class="hidden sm:flex">
 						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
@@ -165,16 +167,12 @@
 						taking initiative is highly encouraged, and challenging the status quo is expected.
 						Above all else, we work hard and try to not take ourselves too seriously along the way.
 					</p>
-					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 sm:mt-20 mb-4">
-						Where We Work
-					</p>
+					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 mb-4">Where We Work</p>
 					<p class="sm:max-w-[553px] text-[14px] sm:text-[24px] font-light leading-8 sm:leading-9">
 						Our headquarters are based in Chicago. We currently have a flexible work from home
 						policy that includes a mix of in-office and fully remote employees.
 					</p>
-					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 sm:mt-20 mb-4">
-						What We Offer
-					</p>
+					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 mb-4">What We Offer</p>
 
 					<ul
 						class="sm:max-w-[553px] text-[14px] sm:text-[24px] list-disc list-inside font-light

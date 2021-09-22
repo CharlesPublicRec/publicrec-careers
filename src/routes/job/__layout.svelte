@@ -16,14 +16,16 @@
 
 <div class="h-fill bg-white mx-auto">
 	<nav>
-		<div class="container mx-auto pt-14 sm:pt-20 px-6 pb-8 bg-white text-black">
+		<div
+			class="container max-w-[1120px] xl:max-w-[1280px] mx-auto pt-14 sm:pt-20 px-6 lg:px-12 pb-8
+			bg-white text-black">
 			<a href="/">
 				<img class="w-[110px] sm:w-[130px]" src="/logo-black.png" alt="Public Rec logo" />
 			</a>
 		</div>
 	</nav>
 
-	<div class="container px-6 mx-auto">
+	<div class="container max-w-[1120px] xl:max-w-[1280px] px-6 lg:px-12 mx-auto">
 		<div class="flex align-center mt-10 sm:mt-20 mb-3 sm:mb-4 align-center hover:opacity-70">
 			<a class="text-black uppercase text-[11px] sm:text-[12px]" href="/">
 				<Arrow
@@ -44,7 +46,7 @@
 	</div>
 
 	<footer class="bg-white text-black">
-		<div class="container px-6 mt-7 mx-auto">
+		<div class="container max-w-[1120px] xl:max-w-[1280px] px-6 lg:px-12 mt-7 mx-auto">
 			<hr />
 			<div
 				class="pb-12 sm:pb-[88px] mt-8 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between

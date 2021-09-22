@@ -200,18 +200,23 @@
 			<hr />
 			<div
 				class="pb-4 sm:pb-[88px] mt-4 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between
-				align-middle sm:items-center mx-auto">
-				<p class="text-[20px] sm:text-[40px] font-light">careers@publicrec.com</p>
+				align-bottom sm:items-center mx-auto">
+				<div class="flex">
+					<p class="text-[20px] sm:text-[40px] font-semibold">careers@publicrec.com</p>
+				</div>
+
 				<div class="flex flex-col">
-					<a class="mt-3 sm:mt-0" href="https://www.instagram.com/publicrec/?hl=en">
+					<a class="mt-2 sm:mt-0" href="https://www.instagram.com/publicrec/?hl=en">
 						<p
-							class="text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right">
+							class="text-white hover:text-opacity-80 text-[14px] tracking-widest font-semibold
+							uppercase sm:text-right">
 							Instagram
 						</p>
 					</a>
-					<a href="https://www.youtube.com/c/publicrec">
+					<a class="sm:pt-3" href="https://www.youtube.com/c/publicrec">
 						<p
-							class="text-white hover:text-opacity-80 text-[14px] font-light uppercase sm:text-right">
+							class="text-white hover:text-opacity-80 text-[14px] tracking-widest font-semibold
+							uppercase sm:text-right">
 							Youtube
 						</p>
 					</a>

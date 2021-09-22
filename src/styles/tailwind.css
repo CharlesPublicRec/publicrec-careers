@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: 'Messina Sans';
-	src: url('/fonts/MessinaSans-Regular.woff') format('woff');
+@layer base {
+	@font-face {
+		font-family: 'Messina Sans';
+		font-weight: 400;
+		src: url('/fonts/MessinaSans-Regular.woff') format('woff');
+	}
+	@font-face {
+		font-family: 'Messina Sans';
+		font-weight: 600;
+		src: url('/fonts/MessinaSans-SemiBold.woff') format('woff');
+	}
 }
+
 * {
 	font-family: 'Messina Sans', sans-serif;
 }

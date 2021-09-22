@@ -6,8 +6,10 @@
 </style>
 
 <div class="text-black mb-14">
-	<hr class="my-6 sm:my-12" />
-	<h3 class="font-semibold tracking-tighter mt-4 sm:mt-[50px] text-[30px] sm:text-[48px]">
+	<hr class="my-6 sm:my-[55px]" />
+	<h3
+		class="font-semibold tracking-tight sm:tracking-normal mt-4 sm:mt-[54px] text-[30px]
+		sm:text-[48px]">
 		Working at Public Rec
 	</h3>
 	<div class="max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32">

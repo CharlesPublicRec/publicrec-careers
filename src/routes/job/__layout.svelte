@@ -44,7 +44,7 @@
 	</div>
 
 	<footer class="bg-white text-black">
-		<div class="container px-6 sm:px-0 mt-7 mx-auto">
+		<div class="container px-6 mt-7 mx-auto">
 			<hr />
 			<div
 				class="pb-12 sm:pb-[88px] mt-8 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between

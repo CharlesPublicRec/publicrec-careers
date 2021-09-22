@@ -5,10 +5,16 @@
 	let key = 'a';
 </script>
 
-<style>
+<style lang="postcss">
 	li {
 		padding-left: 1em;
 		text-indent: -1em;
+	}
+	@media (min-width: 480px) {
+		li {
+			padding-left: 1.37em;
+			text-indent: -1.37em;
+		}
 	}
 </style>
 
@@ -21,39 +27,69 @@
 	<div class="container hidden sm:flex flex-grow justify-between">
 		<div class="sm:w-7/12">
 			<h1 class="text-[24px] sm:text-[48px] mb-5">Influencer Manager</h1>
-			<p class="text-[20px] sm:text-[28px]">Overview</p>
+			<h3 class="text-[20px] sm:text-[28px]">Overview</h3>
 			<p class="text-[16px] sm:text-[20px] mt-3">
-				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
-				full-stack web developer to help bring web development in-house as we transition from our
-				third-party agency.
+				Public Rec is building a digitally native leisure brand on a mission to make comfort look
+				good. We’re growing rapidly and looking for someone to join the Marketing team. Chicago
+				preferred, but open to remote for the right person.
 				<br />
 				<br />
-				As our first in-house development hire, you will work cross-functionally with a group which
-				includes our eCommerce manager, designers, and CRO team. This group’s overall purpose is to
-				create a seamless user experience while maintaining an optimal conversion rate.
+				We’re seeking an experienced Influencer and Partnerships Manager to join our marketing team.
+				Reporting to our Head of Marketing, this role will be key in building out our influencer and
+				brand ambassador programs from the ground floor. The right candidate will already have
+				pre-existing relationships with influencers in the fashion/apparel/retail space and will
+				help identify new partnerships and areas of focus.
 				<br />
 				<br />
-				Daily responsibilities will include building, implementing, and testing new designs and
-				functionality across our website. Our ideal candidate will thrive in a collaborative
-				environment with a high attention to detail.
+				As the Influencer Manager, you will own the execution of major influencer and brand
+				ambassador campaigns including sourcing, negotiating terms and usage rights, sending
+				product, and working with Creative on getting assets approved from the Influencers and
+				ambassadors. Ability to run whitelisted paid social ads is a plus.
 				<br />
 				<br />
-				Public Rec’s website is built on a modern web stack including the following languages,
-				frameworks, and tools:
+				This is a full-time role based in Chicago, with a flexible Work From Home model. Remote
+				considered for the right candidate.
+			</p>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Responsibilities</h3>
+			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
+				<li class="pt-2">
+					Prospect, negotiate, and coordinate product sends to key influencers and partners
+				</li>
+				<li class="pt-2">Maintain a content schedule and approve all creative assets</li>
+				<li class="pt-2">
+					Manage and execute influencer campaign, with a main KPI of driving new revenue
+				</li>
+				<li class="pt-2">Identify new areas and types of partnerships we should pursue</li>
+				<li class="pt-2">Understand how to align brand vision with an influencer’s persona</li>
+			</ul>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Minimum Requirements</h3>
+			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
+				<li class="pt-2">3-5 years of experience working with Influencers</li>
+				<li class="pt-2">
+					Experience managing multiple projects at a time, demonstrating an ability to prioritize
+					responsibilities to quickly and effectively meet deadlines
+				</li>
+				<li class="pt-2">Demonstrated autonomy to lead a project in a fast-paced environment</li>
+				<li class="pt-2">
+					Experience working with all levels of influencers and brand ambassadors from micro to
+					major celebrities, both male and female
+				</li>
+				<li class="pt-2">
+					Relationship-builder: Always thinking of ways to add value to the partners and create a
+					stronger bond between Public Rec and the partner
+				</li>
+				<li class="pt-2">An enthusiastic and curious mindset for continuous improvement</li>
+			</ul>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Ready to Apply?</h3>
+			<p class="text-[16px] sm:text-[20px] mt-3">
+				We are committed to building a diverse and inclusive environment at Public Rec. To apply for
+				this role, please email your resume and cover letter to careers@publicrec.com.
 				<br />
 				<br />
-				React - Gatsby - Contentful - Headless Shopify - Netlify – Optimizely
-				<br />
-				<br />
-				This is a remote role based in the U.S. Our office is located in Chicago if there is
-				interest in visiting or working from there.
-				<br />
-				<br />
-				We are committed to building a diverse and inclusive environment at Public Rec. Please
-				submit resumes to careers@publicrec.com.
+				Please include the job title in the subject line.
 			</p>
 		</div>
-		<div class="hidden lg:block sm:w-[332px]">
+		<div class="hidden lg:block sm:max-w-[332px]">
 			<div class="bg-gray-300 border">
 				<p class="text-black text-[18px] p-7">
 					To apply for this role, please email your resume, cover letter, and link to online
@@ -74,18 +110,26 @@
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Overview</h3>
 				<Icon isOpen={true} slot="button" />
 				<p class="text-[16px] sm:text-[20px] mt-3" slot="body">
-					As our Full Stack Developer, you will collaborate with our eCommerce manager, Head of
-					Marketing, Customer Experience, and the Creative team to evolve and refine our eCommerce
-					web experience.
+					Public Rec is building a digitally native leisure brand on a mission to make comfort look
+					good. We’re growing rapidly and looking for someone to join the Marketing team. Chicago
+					preferred, but open to remote for the right person.
 					<br />
 					<br />
-					This is a senior role for an experienced developer looking for and excited to work with
-					React, Gatsby, and Contentful on our Headless Shopify Website. Our ideal candidate will
-					welcome the chance to lead and grow our in-house Engineering team from the ground up.
+					We’re seeking an experienced Influencer and Partnerships Manager to join our marketing
+					team. Reporting to our Head of Marketing, this role will be key in building out our
+					influencer and brand ambassador programs from the ground floor. The right candidate will
+					already have pre-existing relationships with influencers in the fashion/apparel/retail
+					space and will help identify new partnerships and areas of focus.
 					<br />
 					<br />
-					We provide endless opportunity and zero red tape. Scrappy and proud. This is a U.S. remote
-					role, with an option to work from our HQ in Chicago.
+					As the Influencer Manager, you will own the execution of major influencer and brand
+					ambassador campaigns including sourcing, negotiating terms and usage rights, sending
+					product, and working with Creative on getting assets approved from the Influencers and
+					ambassadors. Ability to run whitelisted paid social ads is a plus.
+					<br />
+					<br />
+					This is a full-time role based in Chicago, with a flexible Work From Home model. Remote
+					considered for the right candidate.
 				</p>
 			</AccordionItem>
 		</Accordion>
@@ -95,26 +139,18 @@
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Responsibilities</h3>
 				<Icon isOpen={false} slot="button" />
 				<ul
-					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
-					leading-8 sm:leading-9 mt-3"
+					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside leading-8
+					sm:leading-9 mt-3"
 					slot="body">
-					<li>Assisting in scoping, estimating and allocating project work</li>
-					<li>
-						Building, implementing, and testing new designs and functionality across our website.
+					<li class="pt-2">
+						Prospect, negotiate, and coordinate product sends to key influencers and partners
 					</li>
-					<li>
-						Taking initiative on performance and conversion optimization efforts throughrecruiting
-						and hiring
+					<li class="pt-2">Maintain a content schedule and approve all creative assets</li>
+					<li class="pt-2">
+						Manage and execute influencer campaign, with a main KPI of driving new revenue
 					</li>
-					<span class="my-3">
-						Our website is built on a modern web stack including the following:
-					</span>
-					<li>React</li>
-					<li>Gatsby</li>
-					<li>Contentful</li>
-					<li>Headless Shopify</li>
-					<li>Netlify</li>
-					<li>Optimizely</li>
+					<li class="pt-2">Identify new areas and types of partnerships we should pursue</li>
+					<li class="pt-2">Understand how to align brand vision with an influencer’s persona</li>
 				</ul>
 
 			</AccordionItem>
@@ -125,25 +161,24 @@
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Minimum Requirements</h3>
 				<Icon isOpen={false} slot="button" />
 				<ul
-					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
-					leading-8 sm:leading-9 mt-3"
+					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside leading-8
+					sm:leading-9 mt-3"
 					slot="body">
-					<li>
-						3+ years of professional experience as a Full Stack Developer supporting a brand or at a
-						digital agency
+					<li class="pt-2">3-5 years of experience working with Influencers</li>
+					<li class="pt-2">
+						Experience managing multiple projects at a time, demonstrating an ability to prioritize
+						responsibilities to quickly and effectively meet deadlines
 					</li>
-					<li>Experience leading project or engineering teams</li>
-					<li>3+ years experience with React + Gatsby</li>
-					<li>Proficiency in Shopify development</li>
-					<li>Comfortable developing on top of Contentful</li>
-					<li>An understanding of Headless Shopify development</li>
-					<li>
-						Enthusiasm for pushing the limits of technology and software to partner with Creative
-						for a better customer experience
+					<li class="pt-2">Demonstrated autonomy to lead a project in a fast-paced environment</li>
+					<li class="pt-2">
+						Experience working with all levels of influencers and brand ambassadors from micro to
+						major celebrities, both male and female
 					</li>
-					<li>Always exploring emerging technologies</li>
-					<li>A collaborative mindset and passion for your craft</li>
-
+					<li class="pt-2">
+						Relationship-builder: Always thinking of ways to add value to the partners and create a
+						stronger bond between Public Rec and the partner
+					</li>
+					<li class="pt-2">An enthusiastic and curious mindset for continuous improvement</li>
 				</ul>
 			</AccordionItem>
 		</Accordion>

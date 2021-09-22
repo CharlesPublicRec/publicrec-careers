@@ -158,7 +158,11 @@
 
 		</div>
 		<div class="text-white mb-8">
-			<h3 class="font-semibold mt-20 sm:mt-32 text-[30px] sm:text-[48px]">Working at Public Rec</h3>
+			<h3
+				class="font-semibold mt-20 sm:mt-32 tracking-tight sm:tracking-normal text-[30px]
+				sm:text-[48px]">
+				Working at Public Rec
+			</h3>
 			<div class="max-w-prose flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32">
 				<div>
 					<p class="uppercase font-semibold text-[15px] tracking-wider mt-5 mb-4">Who We Are</p>
@@ -194,7 +198,7 @@
 		</div>
 	</div>
 	<footer class="bg-black text-white">
-		<div class="container px-6 sm:px-0 mt-7 mx-auto">
+		<div class="container px-6 mt-7 mx-auto">
 			<hr />
 			<div
 				class="pb-12 sm:pb-[88px] mt-8 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between

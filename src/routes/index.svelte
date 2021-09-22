@@ -194,27 +194,27 @@
 		</div>
 	</div>
 	<footer class="bg-black text-white">
-		<div class="container px-6 sm:px-0 mt-6 mx-auto">
+		<div class="container px-6 sm:px-0 mt-7 mx-auto">
 			<hr />
 			<div
-				class="pb-4 sm:pb-[88px] mt-4 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between
+				class="pb-12 sm:pb-[88px] mt-8 mb-2 sm:mt-[88px] flex flex-col sm:flex-row justify-between
 				align-bottom sm:items-center mx-auto">
-				<div class="flex">
-					<p class="text-[20px] sm:text-[40px] font-semibold">careers@publicrec.com</p>
+				<div class="flex mb-4 sm:mb-0">
+					<p class="text-[24px] sm:text-[40px] font-semibold">careers@publicrec.com</p>
 				</div>
 
 				<div class="flex flex-col">
 					<a class="mt-2 sm:mt-0" href="https://www.instagram.com/publicrec/?hl=en">
 						<p
-							class="text-white hover:text-opacity-80 text-[14px] tracking-widest font-semibold
-							uppercase sm:text-right">
+							class="text-white hover:text-opacity-80 text-[12px] sm:text-[14px] tracking-widest
+							font-semibold uppercase sm:text-right">
 							Instagram
 						</p>
 					</a>
-					<a class="sm:pt-3" href="https://www.youtube.com/c/publicrec">
+					<a class="pt-4" href="https://www.youtube.com/c/publicrec">
 						<p
-							class="text-white hover:text-opacity-80 text-[14px] tracking-widest font-semibold
-							uppercase sm:text-right">
+							class="text-white hover:text-opacity-80 text-[12px] sm:text-[14px] tracking-widest
+							font-semibold uppercase sm:text-right">
 							Youtube
 						</p>
 					</a>

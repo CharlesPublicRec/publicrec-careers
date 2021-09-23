@@ -26,9 +26,9 @@
 
 <li class="accordion-item" aria-expanded={params.open}>
 
-	<div class="accordion-item-header flex justify-between">
+	<div class="accordion-item-header flex align-middle justify-between">
 		<slot name="header" />
-		<span class="" on:click={handleToggle}>
+		<span class="flex align-middle" on:click={handleToggle}>
 			<slot name="button" />
 		</span>
 

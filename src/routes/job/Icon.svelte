@@ -26,7 +26,7 @@
 	}
 </style>
 
-<button id="plusMinus" aria-expanded={isOpen} on:click={toggle}>
+<button class="pl-2" id="plusMinus" aria-expanded={isOpen} on:click={toggle}>
 	<svg
 		aria-hidden="true"
 		class="icon icon--type-cog"
@@ -34,8 +34,10 @@
 		height="2"
 		role="img"
 		version="1.1"
-		viewBox="0 0 16 16">
-		<rect class="horizontal" y="7" width="16" height="2" />
-		<rect class="vertical" x="7" width="2" height="16" />
+		viewBox="0 0 18 18">
+		<rect class="horizontal" y="7" width="16" height="1.5" />
+		/>
+		<rect class="vertical" x="7" width="1.5" height="16" />
+		/>
 	</svg>
 </button>

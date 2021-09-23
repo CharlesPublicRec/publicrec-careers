@@ -47,7 +47,9 @@
 				<br />
 				<br />
 				We are committed to building a diverse and inclusive environment at Public Rec. Please
-				submit resumes to careers@publicrec.com.
+				submit resumes to
+				<a href="mailto:careers@publicrec.com">careers@publicrec.com.</a>
+
 			</p>
 			<h3 class="text-[20px] sm:text-[28px] mt-10">Responsibilities</h3>
 			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
@@ -106,7 +108,9 @@
 			<h3 class="text-[20px] sm:text-[28px] mt-10">Ready to Apply?</h3>
 			<p class="text-[16px] sm:text-[20px] mt-3">
 				We are committed to building a diverse and inclusive environment at Public Rec. To apply for
-				this role, please email your resume and cover letter to careers@publicrec.com.
+				this role, please email your resume and cover letter to
+				<a href="mailto:careers@publicrec.com">careers@publicrec.com.</a>
+
 				<br />
 				<br />
 				Please include the job title in the subject line.
@@ -116,7 +120,8 @@
 			<div class="bg-gray-300 border">
 				<p class="text-black text-[18px] p-7">
 					To apply for this role, please email your resume, cover letter, and link to online
-					portfolio to careers@publicrec.com
+					portfolio to
+					<a href="mailto:careers@publicrec.com">careers@publicrec.com</a>
 				</p>
 			</div>
 		</div>
@@ -125,9 +130,10 @@
 		<h1 class="text-[24px] sm:text-[48px] mb-5">Design Lead</h1>
 		<p class="text-[16px] sm:text-[20px] mt-3 mb-6">
 			To apply for this role, please email your resume, cover letter, and link to online portfolio
-			to careers@publicrec.com
+			to
+			<a href="mailto:careers@publicrec.com">careers@publicrec.com</a>
 		</p>
-		<hr class="mt-5 mb-10" />
+		<hr class="my-5" />
 		<Accordion bind:key>
 			<AccordionItem key="a">
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Overview</h3>
@@ -151,7 +157,9 @@
 					<br />
 					<br />
 					We are committed to building a diverse and inclusive environment at Public Rec. Please
-					submit resumes to careers@publicrec.com.
+					submit resumes to
+					<a href="mailto:careers@publicrec.com">careers@publicrec.com.</a>
+
 				</p>
 			</AccordionItem>
 		</Accordion>

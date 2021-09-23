@@ -1,7 +1,7 @@
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
-import vercel from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-vercel';
 
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
@@ -9,7 +9,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel(),
+		adapter: adapter(),
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'
 	}

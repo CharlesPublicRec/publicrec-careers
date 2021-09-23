@@ -190,8 +190,8 @@
 					</p>
 					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 mb-4">Where We Work</p>
 					<p class="sm:max-w-[660px] text-[14px] sm:text-[20px] leading-8 sm:leading-9">
-						Our headquarters are based in Chicago. We currently have a flexible work from home
-						policy that includes a mix of in-office and fully remote employees.
+						Our headquarters is based in Chicago. We currently have a flexible work-from-home policy
+						that includes a mix of in-office and fully remote employees.
 					</p>
 					<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 mb-4">What We Offer</p>
 
@@ -202,7 +202,7 @@
 						<li class="pt-2">Health & dental insurance coverage</li>
 						<li class="pt-2">Competitive parental leave policy</li>
 						<li class="pt-2">Generous employee discount</li>
-						<li class="pt-2">Flexible Work From Home model</li>
+						<li class="pt-2">Flexible work-from-home model</li>
 					</ul>
 
 				</div>

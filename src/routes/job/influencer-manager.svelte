@@ -47,7 +47,7 @@
 				ambassadors. Ability to run whitelisted paid social ads is a plus.
 				<br />
 				<br />
-				This is a full-time role based in Chicago, with a flexible Work From Home model. Remote
+				This is a full-time role based in Chicago, with a flexible work-from-home model. Remote
 				considered for the right candidate.
 			</p>
 			<h3 class="text-[20px] sm:text-[28px] mt-10">Responsibilities</h3>
@@ -131,7 +131,7 @@
 					ambassadors. Ability to run whitelisted paid social ads is a plus.
 					<br />
 					<br />
-					This is a full-time role based in Chicago, with a flexible Work From Home model. Remote
+					This is a full-time role based in Chicago, with a flexible work-from-home model. Remote
 					considered for the right candidate.
 				</p>
 			</AccordionItem>

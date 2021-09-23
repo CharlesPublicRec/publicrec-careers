@@ -21,13 +21,13 @@
 	<div class=" flex flex-col sm:flex-row mt-2 mb-10 sm:mb-32">
 		<div>
 			<p class="uppercase font-semibold text-[15px] tracking-wider mt-5 mb-4">Who We Are</p>
-			<p class="sm:max-w-[750px] text-[14px] sm:text-[20px]e leading-8 sm:leading-9">
+			<p class="sm:max-w-[750px] text-[14px] sm:text-[20px] leading-8 sm:leading-9">
 				Our culture is all about autonomy, creativity, and collaboration. Respect is guaranteed,
 				taking initiative is highly encouraged, and challenging the status quo is expected. Above
 				all else, we work hard and try to not take ourselves too seriously along the way.
 			</p>
 			<p class="uppercase font-semibold text-[15px] tracking-wider mt-14 mb-4">Where We Work</p>
-			<p class="sm:max-w-[750px] text-[14px] sm:text-[20px]e leading-8 sm:leading-9">
+			<p class="sm:max-w-[750px] text-[14px] sm:text-[20px] leading-8 sm:leading-9">
 				Our headquarters are based in Chicago. We currently have a flexible work from home policy
 				that includes a mix of in-office and fully remote employees.
 			</p>

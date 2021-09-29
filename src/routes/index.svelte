@@ -107,7 +107,7 @@
 						</p>
 					</div>
 					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+						<a class="hover:opacity-80 self-center" href="/job/design-lead">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"
@@ -119,7 +119,7 @@
 						</a>
 					</div>
 					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+						<a class="hover:opacity-80 self-center" href="/job/design-lead">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"
@@ -146,7 +146,7 @@
 						</p>
 					</div>
 					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+						<a class="hover:opacity-80 self-center" href="/job/influencer-manager">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"
@@ -158,7 +158,7 @@
 						</a>
 					</div>
 					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/full-stack-dev">
+						<a class="hover:opacity-80 self-center" href="/job/influencer-manager">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"

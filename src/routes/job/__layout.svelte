@@ -19,7 +19,7 @@
 		<div
 			class="container max-w-[1120px] xl:max-w-[1280px] mx-auto pt-14 sm:pt-20 px-7 lg:px-12 pb-8
 			bg-white text-black">
-			<a href="/">
+			<a href="https://www.publicrec.com/">
 				<img class="w-[110px] sm:w-[130px]" src="/logo-black.png" alt="Public Rec logo" />
 			</a>
 		</div>

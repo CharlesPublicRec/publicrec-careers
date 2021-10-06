@@ -66,7 +66,6 @@
 					Independently manage concepting, project milestones, deliverables, and creative
 					presentations.
 				</li>
-				<li class="pt-2">Identify new areas and types of partnerships we should pursue.</li>
 				<li class="pt-2">
 					Lead projects in all stages from strategic ideation to visual design to launch.
 				</li>
@@ -185,7 +184,7 @@
 						Independently manage concepting, project milestones, deliverables, and creative
 						presentations.
 					</li>
-					<li class="pt-2">Identify new areas and types of partnerships we should pursue.</li>
+
 					<li class="pt-2">
 						Lead projects in all stages from strategic ideation to visual design to launch.
 					</li>

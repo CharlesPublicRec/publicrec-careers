@@ -63,43 +63,6 @@
 
 				<div class="flex">
 					<div class="flex-grow">
-						<a href="/job/senior-designer">
-							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
-								Senior Designer
-							</p>
-						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
-							Chicago / Los Angeles / Remote
-						</p>
-					</div>
-					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/senior-designer">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="36"
-								height="17"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/senior-designer">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="25"
-								height="12"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-				</div>
-				<hr class="mt-8 mb-6" />
-				<div class="flex">
-					<div class="flex-grow">
 						<a href="/job/full-stack-dev">
 							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
 								Full-Stack Developer
@@ -134,80 +97,7 @@
 						</a>
 					</div>
 				</div>
-				<hr class="mt-8 mb-6" />
-				<div class="flex">
-					<div class="flex-grow">
-						<a href="/job/design-lead">
-							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">Design Lead</p>
-						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
-							Chicago / Los Angeles / Remote
-						</p>
-					</div>
-					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/design-lead">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="36"
-								height="17"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/design-lead">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="25"
-								height="12"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-				</div>
-				<hr class="mt-8 mb-6" />
-				<h3 class="font-semibold mt-12 sm:mt-20 text-[30px] sm:text-[48px]">Marketing</h3>
-				<hr class="mt-4 mb-6" />
-				<div class="flex">
-					<div class="flex-grow">
-						<a href="/job/influencer-manager">
-							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
-								Influencer Manager
-							</p>
-						</a>
-						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
-							Chicago / Remote
-						</p>
-					</div>
-					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/influencer-manager">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="36"
-								height="17"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/influencer-manager">
-							<Arrow
-								icon="arrowRight"
-								classes="inline"
-								viewBox="0 0 36 17"
-								width="25"
-								height="12"
-								stroke="white"
-								fill="white" />
-						</a>
-					</div>
-				</div>
+
 				<hr class="mt-8 mb-3" />
 			</div>
 

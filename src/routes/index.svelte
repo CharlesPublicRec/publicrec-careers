@@ -98,6 +98,43 @@
 					</div>
 				</div>
 
+				<hr class="mt-8 mb-6" />
+
+				<div class="flex">
+					<div class="flex-grow">
+						<a href="/job/copywriter">
+							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">Copywriter</p>
+						</a>
+						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
+							Chicago / Los Angeles / Remote
+						</p>
+					</div>
+					<div class="hidden sm:flex">
+						<a class="hover:opacity-80 self-center" href="/job/copywriter">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="36"
+								height="17"
+								stroke="white"
+								fill="white" />
+						</a>
+					</div>
+					<div class="flex sm:hidden">
+						<a class="hover:opacity-80 self-center" href="/job/copywriter">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="25"
+								height="12"
+								stroke="white"
+								fill="white" />
+						</a>
+					</div>
+
+				</div>
 				<hr class="mt-8 mb-3" />
 			</div>
 

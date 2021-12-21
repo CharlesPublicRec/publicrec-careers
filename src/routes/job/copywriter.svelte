@@ -111,31 +111,24 @@
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Overview</h3>
 				<Icon isOpen={true} slot="button" />
 				<p class="text-[16px] sm:text-[20px] mt-3" slot="body">
-					Public Rec is building a leisure apparel brand with products people love. We’re seeking a
-					full-stack web developer to help bring web development in-house as we transition from our
-					third-party agency.
+					We’re seeking a Copywriter to write daily brand communications including email, web,
+					video, and social (organic and paid).
 					<br />
 					<br />
-					As our first in-house development hire, you will work cross-functionally with a group
-					which includes our eCommerce manager, designers, and CRO team. This group’s overall
-					purpose is to create a seamless user experience while maintaining an optimal conversion
-					rate.
+					This person will work with our internal creative team to develop compelling and engaging
+					creative weekly. The ideal candidate has 2-4 years of copywriting experience and is not
+					afraid of a fast-paced, startup environment.
 					<br />
 					<br />
-					Daily responsibilities will include building, implementing, and testing new designs and
-					functionality across our website. Our ideal candidate will thrive in a collaborative
-					environment with a high attention to detail.
+					This role will start with a 3-month contract and has potential for a full-time hire after
+					that. Our team utilizes a hybrid model and there’s flexibility for in-office and remote
+					work, but candidates must be in or planning to relocate to Chicago or Los Angeles.
 					<br />
 					<br />
-					Public Rec’s website is built on a modern web stack including the following languages,
-					frameworks, and tools:
+					We’re hiring for Junior Copywriter, Copywriter, and Senior Copywriter roles.
 					<br />
 					<br />
-					React - Gatsby - Contentful - Headless Shopify - Netlify – Optimizely
-					<br />
-					<br />
-					This is a remote role based in the U.S. Our office is located in Chicago if there is
-					interest in visiting or working from there.
+					We are committed to building a diverse and inclusive environment at Public Rec.
 					<br />
 					<br />
 					<a
@@ -161,15 +154,15 @@
 					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
 					leading-8 sm:leading-9 mt-3"
 					slot="body">
-					<li class="pt-2">Assisting in scoping, estimating and allocating project work</li>
 					<li class="pt-2">
-						Building, implementing, and testing new designs and functionality across our website
+						Write effective, engaging copy across email, web, video, and social (organic and paid).
 					</li>
-					<li class="pt-2">Taking initiative on performance and conversion optimization efforts</li>
 					<li class="pt-2">
-						Leadership and participation in growing the Engineering team through recruiting and
-						hiring
+						Partner with designers, photographers, and directors to deliver strategic and compelling
+						creative.
 					</li>
+					<li class="pt-2">Ideate and concept campaign ideas for social and email.</li>
+					<li class="pt-2">Demonstrate organizational skills and consistently meet deadlines.</li>
 				</ul>
 
 			</AccordionItem>
@@ -184,14 +177,19 @@
 					leading-8 sm:leading-9 mt-3"
 					slot="body">
 					<li class="pt-2">
-						Write effective, engaging copy across email, web, video, and social (organic and paid).
+						2-4 years copywriting experience at an agency, in-house, or freelance. Experience with
+						E-comm and/or direct response marketing is preferred but not necessary.
 					</li>
 					<li class="pt-2">
-						Partner with designers, photographers, and directors to deliver strategic and compelling
-						creative.
+						Experience understanding and emulating brand voice. Ability to flex brand tone for
+						various mediums including email, web, video, and social (organic and paid).
 					</li>
-					<li class="pt-2">Ideate and concept campaign ideas for social and email.</li>
-					<li class="pt-2">Demonstrate organizational skills and consistently meet deadlines.</li>
+					<li class="pt-2">
+						Ability to combine conceptual creative thinking with content delivery.
+					</li>
+					<li class="pt-2">Self-starter who is motivated, resourceful, and well organized.</li>
+					<li class="pt-2">Ability to edit for grammar and spelling.</li>
+					<li class="pt-2">Must include a digital portfolio of previous work.</li>
 
 				</ul>
 

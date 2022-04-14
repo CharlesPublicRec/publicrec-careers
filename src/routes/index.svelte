@@ -38,7 +38,10 @@
 				<p class="hidden sm:block uppercase font-semibold text-[15px] tracking-widest mb-9">
 					Open Jobs
 				</p>
-				<h3 class="font-semibold text-[30px] sm:text-[48px]">Operations</h3>
+				<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
+				No Open Roles
+				</p>	
+				<!-- <h3 class="font-semibold text-[30px] sm:text-[48px]">Operations</h3>
 				<hr class="mt-4 mb-6" />
 
 				<div class="flex">
@@ -78,9 +81,9 @@
 							/>
 						</a>
 					</div>
-				</div>
+				</div> -->
 
-				<hr class="mt-8 mb-6" />
+				<!-- <hr class="mt-8 mb-6" /> -->
 			</div>
 		</div>
 		<div class="text-white mb-8">

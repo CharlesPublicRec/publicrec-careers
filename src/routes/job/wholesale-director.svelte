@@ -12,7 +12,7 @@
 <div class="text-black">
 	<div class="container hidden sm:flex flex-grow justify-between">
 		<div class="sm:w-7/12">
-			<h1 class="text-[24px] sm:text-[48px] mb-5">Wholesale Director</h1>
+			<h1 class="text-[24px] sm:text-[48px] mb-5">Wholesale Director - ROLE CLOSED</h1>
 			<h3 class="text-[20px] sm:text-[28px]">Overview</h3>
 			<p class="text-[16px] sm:text-[20px] mt-3">
 				Public Rec is building a leisure apparel brand with products people love. We’re seeking a

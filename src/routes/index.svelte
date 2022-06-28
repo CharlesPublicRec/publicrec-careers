@@ -69,7 +69,7 @@
 						</a>
 					</div>
 					<div class="flex sm:hidden">
-						<a class="hover:opacity-80 self-center" href="/job/wholesale-director">
+						<a class="hover:opacity-80 self-center" href="/job/designer">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"

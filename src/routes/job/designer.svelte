@@ -15,11 +15,7 @@
 			<h1 class="text-[24px] sm:text-[48px] mb-5">Designer</h1>
 			<h3 class="text-[20px] sm:text-[28px]">Overview</h3>
 			<p class="text-[16px] sm:text-[20px] mt-3">
-				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
-				Wholesale Director to drive growth in our wholesale business. You’ll work directly with our
-				CEO to strategize how best to grow this channel, including assessing (i) key new accounts to
-				target within big box, specialty, outdoor, fitness, golf, resorts, and corporate, (ii)
-				tradeshows to attend, and (iii) hires to make.
+				Public Rec is building a leisure apparel brand with products people love. We’re seeking a Designer to join our creative team. Reporting to our Executive Creative Director and Design Lead, this role will contribute to a wide range of design projects and support our Marketing department. The right candidate will have a keen eye and passion for design and design thinking, a commitment to excellence, and a desire to grow beyond their comfort zone.
 				<br />
 				<br />
 				We are committed to building a diverse and inclusive environment at Public Rec.
@@ -102,7 +98,7 @@
 		</div> -->
 	</div>
 	<div class="sm:hidden">
-		<h1 class="text-[24px] sm:text-[48px] mb-5">Wholesale Director</h1>
+		<h1 class="text-[24px] sm:text-[48px] mb-5">Designer</h1>
 		<p class="text-[16px] sm:text-[20px] mt-3 mb-6">
 			Public Rec is building a leisure apparel brand with products people love.
 		</p>
@@ -112,10 +108,7 @@
 				<h3 class="text-[20px] sm:text-[28px]" slot="header">Overview</h3>
 				<Icon isOpen={true} slot="button" />
 				<p class="text-[16px] sm:text-[20px] mt-3" slot="body">
-					We’re seeking a Wholesale Director to drive growth in our wholesale business. You’ll work
-					directly with our CEO to strategize how best to grow this channel, including assessing (i)
-					key new accounts to target within big box, specialty, outdoor, fitness, golf, resorts, and
-					corporate, (ii) tradeshows to attend, and (iii) hires to make.
+					We’re seeking a Designer to join our creative team. Reporting to our Executive Creative Director and Design Lead, this role will contribute to a wide range of design projects and support our Marketing department. The right candidate will have a keen eye and passion for design and design thinking, a commitment to excellence, and a desire to grow beyond their comfort zone.
 					<br />
 					<br />
 					We are committed to building a diverse and inclusive environment at Public Rec.
@@ -124,7 +117,7 @@
 
 				<a
 					class="mt-8"
-					href="https://jobs.gusto.com/postings/public-rec-wholesale-director-782c46d9-69e4-4bcf-87dc-3af6288c1ef0/applicants/new"
+					href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
 				>
 					<button
 						class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full

@@ -24,7 +24,7 @@
 			<br />
 			<a
 				class="mt-8"
-				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
+				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b/applicants/new"
 			>
 				<button
 					class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full
@@ -77,7 +77,7 @@
 			<br /><br />
 			<a
 				class="mt-8"
-				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
+				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b/applicants/new"
 			>
 				<button
 					class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full
@@ -117,7 +117,7 @@
 
 				<a
 					class="mt-8"
-					href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
+					href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b/applicants/new"
 				>
 					<button
 						class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full

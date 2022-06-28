@@ -46,7 +46,7 @@
 
 				<div class="flex">
 					<div class="flex-grow">
-						<a href="/job/wholesale-director">
+						<a href="/job/designer">
 							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
 								Designer
 							</p>

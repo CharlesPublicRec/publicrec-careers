@@ -38,17 +38,17 @@
 				<p class="hidden sm:block uppercase font-semibold text-[15px] tracking-widest mb-9">
 					Open Jobs
 				</p>
-				<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
+				<!-- <p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
 				No Open Roles
-				</p>	
-				<!-- <h3 class="font-semibold text-[30px] sm:text-[48px]">Operations</h3>
+				</p>	 -->
+				<h3 class="font-semibold text-[30px] sm:text-[48px]">Creative</h3>
 				<hr class="mt-4 mb-6" />
 
 				<div class="flex">
 					<div class="flex-grow">
 						<a href="/job/wholesale-director">
 							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
-								Wholesale Director
+								Designer
 							</p>
 						</a>
 						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
@@ -56,7 +56,7 @@
 						</p>
 					</div>
 					<div class="hidden sm:flex">
-						<a class="hover:opacity-80 self-center" href="/job/wholesale-director">
+						<a class="hover:opacity-80 self-center" href="/job/designer">
 							<Arrow
 								icon="arrowRight"
 								classes="inline"
@@ -81,9 +81,9 @@
 							/>
 						</a>
 					</div>
-				</div> -->
+				</div>
 
-				<!-- <hr class="mt-8 mb-6" /> -->
+				<hr class="mt-8 mb-6" />
 			</div>
 		</div>
 		<div class="text-white mb-8">

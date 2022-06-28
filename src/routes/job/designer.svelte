@@ -1,0 +1,219 @@
+<script>
+	import Accordion from './Accordion.svelte';
+	import AccordionItem from './AccordionItem.svelte';
+	import Icon from './Icon.svelte';
+	let key = 'a';
+</script>
+
+<svelte:head>
+	<title>Public Rec Careers | Designer</title>
+</svelte:head>
+
+<div class="text-black">
+	<div class="container hidden sm:flex flex-grow justify-between">
+		<div class="sm:w-7/12">
+			<h1 class="text-[24px] sm:text-[48px] mb-5">Designer</h1>
+			<h3 class="text-[20px] sm:text-[28px]">Overview</h3>
+			<p class="text-[16px] sm:text-[20px] mt-3">
+				Public Rec is building a leisure apparel brand with products people love. We’re seeking a
+				Wholesale Director to drive growth in our wholesale business. You’ll work directly with our
+				CEO to strategize how best to grow this channel, including assessing (i) key new accounts to
+				target within big box, specialty, outdoor, fitness, golf, resorts, and corporate, (ii)
+				tradeshows to attend, and (iii) hires to make.
+				<br />
+				<br />
+				We are committed to building a diverse and inclusive environment at Public Rec.
+			</p>
+			<br />
+			<br />
+			<a
+				class="mt-8"
+				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
+			>
+				<button
+					class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full
+				focus:shadow-outline"
+				>
+					Apply Now
+				</button>
+			</a>
+
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Qualifications & Attributes</h3>
+			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
+				<li class="pt-2">2-3 years of professional design experience, preferably in consumer brands or ad agencies.
+</li>
+				<li class="pt-2">
+					A portfolio of work that demonstrates thoughtful, compelling work you’re proud of.
+				</li>
+				<li class="pt-2">
+					A background in visual or UX design is required.
+				</li>
+				<li class="pt-2">
+					High business acumen to understand retail margin and account profitability.
+				</li>
+				<li class="pt-2">
+					Excellent communication skills and meticulous attention to detail.
+				</li>
+				<li class="pt-2">A true generalist with experience in UX Design, social media and community management, video editing, and ad design.</li>
+				<li class="pt-2">
+					Fluency in Figma and Adobe Creative Suite. AfterEffects proficiency is a bonus.
+				</li>
+				<li class="pt-2">
+					A passion for design and collaboration with other creatives.
+				</li>
+			</ul>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Responsibilities</h3>
+			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
+				<li class="pt-2">
+					Work with our creative team to develop digital and print campaigns and design assets across a broad range of media including websites, social media, paid social ads, and other marketing materials
+				</li>
+				<li class="pt-2">
+					Contribute to campaign ideation and be able to apply creative direction in your designs throughout the project lifecycle
+				</li>
+				<li class="pt-2">
+					Work collaboratively with creative team members, but have the ability to work proactively and independently with minimal supervision
+				</li>
+			</ul>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Ready to Apply?</h3>
+			<p class="text-[16px] sm:text-[20px] mt-3">
+				We are committed to building a diverse and inclusive environment at Public Rec.
+			</p>
+			<br /><br />
+			<a
+				class="mt-8"
+				href="https://jobs.gusto.com/postings/public-rec-designer-79b2c412-5d8b-4822-b1c0-92b2999db61b"
+			>
+				<button
+					class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full
+					focus:shadow-outline"
+				>
+					Apply Now
+				</button>
+			</a>
+		</div>
+		<!-- <div class="hidden lg:block sm:w-[332px]">
+			<div class="bg-gray-300 border">
+				<p class="text-[18px] text-black p-7">
+					To apply for this role, please email your resume, cover letter, and link to online
+					portfolio to
+					<a href="mailto:careers@publicrec.com">careers@publicrec.com</a>
+				</p>
+			</div>
+		</div> -->
+	</div>
+	<div class="sm:hidden">
+		<h1 class="text-[24px] sm:text-[48px] mb-5">Wholesale Director</h1>
+		<p class="text-[16px] sm:text-[20px] mt-3 mb-6">
+			Public Rec is building a leisure apparel brand with products people love.
+		</p>
+		<hr class="my-5" />
+		<Accordion bind:key>
+			<AccordionItem key="a">
+				<h3 class="text-[20px] sm:text-[28px]" slot="header">Overview</h3>
+				<Icon isOpen={true} slot="button" />
+				<p class="text-[16px] sm:text-[20px] mt-3" slot="body">
+					We’re seeking a Wholesale Director to drive growth in our wholesale business. You’ll work
+					directly with our CEO to strategize how best to grow this channel, including assessing (i)
+					key new accounts to target within big box, specialty, outdoor, fitness, golf, resorts, and
+					corporate, (ii) tradeshows to attend, and (iii) hires to make.
+					<br />
+					<br />
+					We are committed to building a diverse and inclusive environment at Public Rec.
+				</p>
+				<br />
+
+				<a
+					class="mt-8"
+					href="https://jobs.gusto.com/postings/public-rec-wholesale-director-782c46d9-69e4-4bcf-87dc-3af6288c1ef0/applicants/new"
+				>
+					<button
+						class="h-12 px-6 text-white bg-black transition-colors duration-150 rounded-full
+				focus:shadow-outline"
+					>
+						Apply Now
+					</button>
+				</a>
+			</AccordionItem>
+		</Accordion>
+		<hr class="my-5" />
+		<Accordion>
+			<AccordionItem key="b">
+				<h3 class="text-[20px] sm:text-[28px]" slot="header">Qualifications & Attributes</h3>
+				<Icon isOpen={false} slot="button" />
+				<ul
+					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
+					leading-8 sm:leading-9 mt-3"
+					slot="body"
+				>
+					<li class="pt-2">Bachelor’s degree or equivalent work experience.</li>
+					<li class="pt-2">
+						10+ years of sales experience in a fast paced, fashion/apparel environment. Experience
+						with big box or outdoor retailers is preferred.
+					</li>
+					<li class="pt-2">
+						Ability to develop seasonal assortments, forecasts, and scenario planning.
+					</li>
+					<li class="pt-2">
+						High business acumen to understand retail margin and account profitability.
+					</li>
+					<li class="pt-2">
+						Experience working across multiple teams to forecast inventory demand, oversee order
+						fulfillment, and navigate relevant software including SPS Commerce and NuOrder.
+					</li>
+					<li class="pt-2">Proven success in meeting deadlines and revenue goals.</li>
+					<li class="pt-2">
+						Strong understanding of the consumer mindset, consumer empathy, and dedication to great
+						consumer experiences.
+					</li>
+				</ul>
+			</AccordionItem>
+		</Accordion>
+		<hr class="my-5" />
+		<Accordion>
+			<AccordionItem key="c">
+				<h3 class="text-[20px] sm:text-[28px]" slot="header">Responsibilities</h3>
+				<Icon isOpen={false} slot="button" />
+				<ul
+					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
+					leading-8 sm:leading-9 mt-3"
+					slot="body"
+				>
+					<li class="pt-2">
+						Create and execute short and long-term strategic growth plans to acquire new accounts in
+						big box, outdoor, fitness, specialty, golf/resort and corporate.
+					</li>
+					<li class="pt-2">
+						Assess our needs as we grow. Recruit, hire, train, and manage internal wholesale
+						associates and external reps.
+					</li>
+					<li class="pt-2">
+						Achieve annual revenue and profitability targets based on financial planning,
+						forecasting, sell thru analysis, consumer insights, and account strategic priorities.
+					</li>
+					<li class="pt-2">
+						Work closely with merchandising and planning teams to ensure we are delivering consumer
+						right assortments for each channel and account every season.
+					</li>
+					<li class="pt-2">
+						Review weekly/monthly retail sales, profitability, and inventory performance by account
+						and channel to identify opportunities and risks; provide recommendations to ensure we
+						continue to track towards our financial goals.
+					</li>
+				</ul>
+			</AccordionItem>
+		</Accordion>
+	</div>
+</div>
+
+<style lang="postcss">
+	li {
+		padding-left: 1em;
+		text-indent: -1em;
+	}
+	@media (min-width: 480px) {
+		li {
+			padding-left: 1.37em;
+			text-indent: -1.37em;
+		}
+	}
+</style>

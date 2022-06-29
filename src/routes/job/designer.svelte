@@ -15,10 +15,10 @@
 			<h1 class="text-[24px] sm:text-[48px] mb-5">Designer</h1>
 			<h3 class="text-[20px] sm:text-[28px]">Overview</h3>
 			<p class="text-[16px] sm:text-[20px] mt-3">
-				Public Rec is building a leisure apparel brand with products people love. We’re seeking a Designer to join our creative team. Reporting to our Executive Creative Director and Design Lead, this role will contribute to a wide range of design projects and support our Marketing department. The right candidate will have a keen eye and passion for design and design thinking, a commitment to excellence, and a desire to grow beyond their comfort zone.
+				We’re seeking a Designer to join our creative team. Reporting to our Executive Creative Director and Design Lead, this role will contribute to a wide range of design projects and support our Marketing department. The right candidate will have a keen eye and passion for design and design thinking, a commitment to excellence, and a desire to grow beyond their comfort zone
 				<br />
 				<br />
-				We are committed to building a diverse and inclusive environment at Public Rec.
+				As a Designer, you are able to develop original concepts as well as work within established brand guidelines and design systems to execute beautiful, functional designs.
 			</p>
 			<br />
 			<br />
@@ -34,7 +34,7 @@
 				</button>
 			</a>
 
-			<h3 class="text-[20px] sm:text-[28px] mt-10">Qualifications & Attributes</h3>
+			<h3 class="text-[20px] sm:text-[28px] mt-10">Minimum Requirements</h3>
 			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
 				<li class="pt-2">2-3 years of professional design experience, preferably in consumer brands or ad agencies.
 </li>
@@ -45,17 +45,18 @@
 					A background in visual or UX design is required.
 				</li>
 				<li class="pt-2">
-					High business acumen to understand retail margin and account profitability.
-				</li>
-				<li class="pt-2">
 					Excellent communication skills and meticulous attention to detail.
 				</li>
-				<li class="pt-2">A true generalist with experience in UX Design, social media and community management, video editing, and ad design.</li>
+				<li class="pt-2">A true generalist with experience in UX Design, social media and community management, video editing, and ad design.
+				</li>
 				<li class="pt-2">
 					Fluency in Figma and Adobe Creative Suite. AfterEffects proficiency is a bonus.
 				</li>
 				<li class="pt-2">
 					A passion for design and collaboration with other creatives.
+				</li>
+				<li class="pt-2">
+					An enthusiastic and curious mindset for continuous improvement.
 				</li>
 			</ul>
 			<h3 class="text-[20px] sm:text-[28px] mt-10">Responsibilities</h3>
@@ -99,9 +100,6 @@
 	</div>
 	<div class="sm:hidden">
 		<h1 class="text-[24px] sm:text-[48px] mb-5">Designer</h1>
-		<p class="text-[16px] sm:text-[20px] mt-3 mb-6">
-			Public Rec is building a leisure apparel brand with products people love.
-		</p>
 		<hr class="my-5" />
 		<Accordion bind:key>
 			<AccordionItem key="a">
@@ -111,7 +109,7 @@
 					We’re seeking a Designer to join our creative team. Reporting to our Executive Creative Director and Design Lead, this role will contribute to a wide range of design projects and support our Marketing department. The right candidate will have a keen eye and passion for design and design thinking, a commitment to excellence, and a desire to grow beyond their comfort zone.
 					<br />
 					<br />
-					We are committed to building a diverse and inclusive environment at Public Rec.
+					As a Designer, you are able to develop original concepts as well as work within established brand guidelines and design systems to execute beautiful, functional designs.
 				</p>
 				<br />
 
@@ -131,33 +129,35 @@
 		<hr class="my-5" />
 		<Accordion>
 			<AccordionItem key="b">
-				<h3 class="text-[20px] sm:text-[28px]" slot="header">Qualifications & Attributes</h3>
+				<h3 class="text-[20px] sm:text-[28px]" slot="header">Minimum Requirements</h3>
 				<Icon isOpen={false} slot="button" />
 				<ul
 					class="sm:max-w-[553px] text-[16px] sm:text-[20px] list-disc list-inside font-light
 					leading-8 sm:leading-9 mt-3"
 					slot="body"
 				>
-					<li class="pt-2">Bachelor’s degree or equivalent work experience.</li>
-					<li class="pt-2">
-						10+ years of sales experience in a fast paced, fashion/apparel environment. Experience
-						with big box or outdoor retailers is preferred.
-					</li>
-					<li class="pt-2">
-						Ability to develop seasonal assortments, forecasts, and scenario planning.
-					</li>
-					<li class="pt-2">
-						High business acumen to understand retail margin and account profitability.
-					</li>
-					<li class="pt-2">
-						Experience working across multiple teams to forecast inventory demand, oversee order
-						fulfillment, and navigate relevant software including SPS Commerce and NuOrder.
-					</li>
-					<li class="pt-2">Proven success in meeting deadlines and revenue goals.</li>
-					<li class="pt-2">
-						Strong understanding of the consumer mindset, consumer empathy, and dedication to great
-						consumer experiences.
-					</li>
+					<li class="pt-2">2-3 years of professional design experience, preferably in consumer brands or ad agencies.
+</li>
+				<li class="pt-2">
+					A portfolio of work that demonstrates thoughtful, compelling work you’re proud of.
+				</li>
+				<li class="pt-2">
+					A background in visual or UX design is required.
+				</li>
+				<li class="pt-2">
+					Excellent communication skills and meticulous attention to detail.
+				</li>
+				<li class="pt-2">A true generalist with experience in UX Design, social media and community management, video editing, and ad design.
+				</li>
+				<li class="pt-2">
+					Fluency in Figma and Adobe Creative Suite. AfterEffects proficiency is a bonus.
+				</li>
+				<li class="pt-2">
+					A passion for design and collaboration with other creatives.
+				</li>
+				<li class="pt-2">
+					An enthusiastic and curious mindset for continuous improvement.
+				</li>
 				</ul>
 			</AccordionItem>
 		</Accordion>
@@ -172,26 +172,14 @@
 					slot="body"
 				>
 					<li class="pt-2">
-						Create and execute short and long-term strategic growth plans to acquire new accounts in
-						big box, outdoor, fitness, specialty, golf/resort and corporate.
-					</li>
-					<li class="pt-2">
-						Assess our needs as we grow. Recruit, hire, train, and manage internal wholesale
-						associates and external reps.
-					</li>
-					<li class="pt-2">
-						Achieve annual revenue and profitability targets based on financial planning,
-						forecasting, sell thru analysis, consumer insights, and account strategic priorities.
-					</li>
-					<li class="pt-2">
-						Work closely with merchandising and planning teams to ensure we are delivering consumer
-						right assortments for each channel and account every season.
-					</li>
-					<li class="pt-2">
-						Review weekly/monthly retail sales, profitability, and inventory performance by account
-						and channel to identify opportunities and risks; provide recommendations to ensure we
-						continue to track towards our financial goals.
-					</li>
+					Work with our creative team to develop digital and print campaigns and design assets across a broad range of media including websites, social media, paid social ads, and other marketing materials
+				</li>
+				<li class="pt-2">
+					Contribute to campaign ideation and be able to apply creative direction in your designs throughout the project lifecycle
+				</li>
+				<li class="pt-2">
+					Work collaboratively with creative team members, but have the ability to work proactively and independently with minimal supervision
+				</li>
 				</ul>
 			</AccordionItem>
 		</Accordion>

@@ -508,6 +508,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .inline {
   display: inline;
 }
@@ -851,6 +854,14 @@ body {
 
   .sm\:text-\[28px\] {
     font-size: 28px;
+  }
+
+  .sm\:text-\[22px\] {
+    font-size: 22px;
+  }
+
+  .sm\:text-\[18px\] {
+    font-size: 18px;
   }
 
   .sm\:leading-9 {

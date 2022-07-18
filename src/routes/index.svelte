@@ -34,6 +34,7 @@
 				</p>
 			</div>
 
+	<!-- Start of Job Section -->
 			<div class="mt-12 sm:mt-32">
 				<p class="hidden sm:block uppercase font-semibold text-[15px] tracking-widest mb-9">
 					Open Jobs
@@ -81,11 +82,56 @@
 							/>
 						</a>
 					</div>
+					</div>
+					<hr class="mt-8 mb-6" />
+				<h3 class="font-semibold text-[30px] sm:text-[48px] mt-10">Operations</h3>
+				<hr class="mt-4 mb-6" />
+
+				<div class="flex">
+					<div class="flex-grow">
+						<a href="/job/operations-analyst">
+							<p class="text-white hover:text-opacity-80 text-[20px] sm:text-[32px]">
+								Operations Analyst
+							</p>
+						</a>
+						<p class="text-[11px] sm:text-[14px] mt-3 font-semibold tracking-widest uppercase">
+							Chicago / Remote
+						</p>
+					</div>
+					<div class="hidden sm:flex">
+						<a class="hover:opacity-80 self-center" href="/job/operations-analyst">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="36"
+								height="17"
+								stroke="white"
+								fill="white"
+							/>
+						</a>
+					</div>
+					<div class="flex sm:hidden">
+						<a class="hover:opacity-80 self-center" href="/job/operations-analyst">
+							<Arrow
+								icon="arrowRight"
+								classes="inline"
+								viewBox="0 0 36 17"
+								width="25"
+								height="12"
+								stroke="white"
+								fill="white"
+							/>
+						</a>
+					</div>
 				</div>
+				
+				
 
 				<hr class="mt-8 mb-6" />
-			</div>
+			</div>	
 		</div>
+
 		<div class="text-white mb-8">
 			<h3
 				class="font-semibold mt-20 sm:mt-32 tracking-tight sm:tracking-normal text-[30px]

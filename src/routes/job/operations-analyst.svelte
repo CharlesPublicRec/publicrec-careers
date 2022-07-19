@@ -36,8 +36,6 @@
 
 			<h3 class="text-[20px] sm:text-[28px] mt-10">Requirements</h3>
 			<ul class="text-[16px] sm:text-[20px] list-disc list-inside leading-8 mt-5">
-				<li class="pt-2">2-3 years of professional design experience, preferably in consumer brands or ad agencies.
-</li>
 				<li class="pt-2">
 					Bachelor's degree with 2+ years of work experience in an analytical role; inventory planning for a consumer brand is a plus.
 				</li>
